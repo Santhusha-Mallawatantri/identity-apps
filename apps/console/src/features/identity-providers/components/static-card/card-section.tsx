@@ -12,11 +12,11 @@
 
 import { GenericIconProps, GenericIconSizes, GridLayout } from "@wso2is/react-components";
 import { IdentifiableComponentInterface, TestableComponentInterface } from "modules/core/src/models";
-import BiometricIcon from "modules/theme/src/themes/asgardio/assets/images/icons/fingerprint.svg";
-import MagicLinkIcon from "modules/theme/src/themes/asgardio/assets/images/icons/magic-link-icon.svg";
-import TOTPIcon from "modules/theme/src/themes/asgardio/assets/images/icons/outline-icons/clock-outline.svg";
-import EmailIcon from "modules/theme/src/themes/asgardio/assets/images/icons/solid-icons/email-solid.svg";
-import SMSIcon from "modules/theme/src/themes/asgardio/assets/images/icons/solid-icons/sms-solid.svg";
+import BiometricIcon from "modules/theme/src/themes/default/assets/images/icons/fingerprint.svg";
+import MagicLinkIcon from "modules/theme/src/themes/default/assets/images/icons/magic-link-icon.svg";
+import TOTPIcon from "modules/theme/src/themes/default/assets/images/icons/outline-icons/clock-outline.svg";
+import EmailIcon from "modules/theme/src/themes/default/assets/images/icons/solid-icons/email-solid.svg";
+import SMSIcon from "modules/theme/src/themes/default/assets/images/icons/solid-icons/sms-solid.svg";
 import React, { ReactNode } from "react";
 import { Card, CardProps, Label } from "semantic-ui-react";
 
@@ -146,10 +146,10 @@ const CardSection = () => {
             <div className="static-standard-title">
                 Standard Intergrations
             </div>
-            <div className="grid-container-section">
-                
-                { /* // style={ { display:"grid", gap:"14px", gridTemplateColumns: "1fr 1fr 1fr 1fr",
-                //     marginBottom:"20px",width:"330px" } } > */ }
+            <div 
+                className="grid-container-section"
+                style={ { display:"grid", gap:"14px", gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                    marginBottom:"20px",width:"330px" } }>
                 { CardData.map(( items , i )=>{
                     return(
                         <GridLayout key={ i } className="standard-card-grid">
