@@ -129,7 +129,11 @@ export const getDeveloperViewRoutes = (): RouteInterface[] => {
                         },
                         id: "identityProviders",
                         name: identityProviderConfig?.useNewConnectionsView
-                            ? "console:develop.features.sidePanel.authenticationProviders"
+                        // ? "console:develop.features.sidePanel.authenticationProviders" 
+                            /** Commented as the i18n changes did not apply
+                            * i18n string value changed to "Integrations"
+                            * path: modules/i18n/src/translations/en-US/portals/console.ts*/
+                            ? "Integrations"
                             : "console:develop.features.sidePanel.identityProviders",
                         order: 2,
                         path: AppConstants.getPaths().get("IDP"),

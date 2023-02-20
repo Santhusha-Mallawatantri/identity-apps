@@ -5693,7 +5693,7 @@ export const console: ConsoleNS = {
                 applications: "Applications",
                 authenticationProviderEdit: "Identity Providers Edit",
                 authenticationProviderTemplates: "Identity Provider Templates",
-                authenticationProviders: "Connections",
+                authenticationProviders: "Integrations",
                 categories: {
                     application: "Applications",
                     authenticationProviders: "Identity Providers",
