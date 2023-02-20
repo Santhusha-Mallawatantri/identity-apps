@@ -1,3 +1,4 @@
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2022, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
  *
@@ -36,7 +37,7 @@ export const identityProviderConfig: IdentityProviderConfig = {
                 quickStart: lazy(() => import("../components/authenticators/email-otp/quick-start"))
             },
             isComingSoon: false,
-            isEnabled: true,
+            isEnabled: false,
             useAuthenticatorsAPI: false
         },
         [ IdentityProviderManagementConstants.SMS_OTP_AUTHENTICATOR_ID ]: {
@@ -44,7 +45,7 @@ export const identityProviderConfig: IdentityProviderConfig = {
                 quickStart: lazy(() => import("../components/authenticators/sms-otp/quick-start"))
             },
             isComingSoon: false,
-            isEnabled: true,
+            isEnabled: false,
             useAuthenticatorsAPI: false
         },
         [ IdentityProviderManagementConstants.TOTP_AUTHENTICATOR_ID ]: {
@@ -52,7 +53,7 @@ export const identityProviderConfig: IdentityProviderConfig = {
                 quickStart: lazy(() => import("../components/authenticators/totp/quick-start"))
             },
             isComingSoon: false,
-            isEnabled: true,
+            isEnabled: false,
             useAuthenticatorsAPI: true
         },
         [ IdentityProviderManagementConstants.FIDO_AUTHENTICATOR_ID ]: {
@@ -60,7 +61,7 @@ export const identityProviderConfig: IdentityProviderConfig = {
                 quickStart: lazy(() => import("../components/authenticators/fido/quick-start"))
             },
             isComingSoon: false,
-            isEnabled: true,
+            isEnabled: false,
             useAuthenticatorsAPI: true
         },
         [ IdentityProviderManagementConstants.MAGIC_LINK_AUTHENTICATOR_ID ]: {
@@ -68,7 +69,7 @@ export const identityProviderConfig: IdentityProviderConfig = {
                 quickStart: lazy(() => import("../components/authenticators/magic-link/quick-start"))
             },
             isComingSoon: false,
-            isEnabled: true,
+            isEnabled: false,
             useAuthenticatorsAPI: true
         }
     },
