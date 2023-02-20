@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2020, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
  *
@@ -18,9 +20,9 @@
 
 import { IdentifiableComponentInterface, TestableComponentInterface } from "@wso2is/core/models";
 import classNames from "classnames";
-import React, { FunctionComponent, MouseEvent, PropsWithChildren, ReactElement, ReactNode } from "react";
+import React, { FunctionComponent, MouseEvent, PropsWithChildren, ReactElement, ReactNode, useState } from "react";
 import { Card, CardProps, Icon, Label } from "semantic-ui-react";
-import { LinkButton } from "../button";
+import { Button, LinkButton } from "../button";
 import { GenericIcon, GenericIconProps, GenericIconSizes } from "../icon";
 import { Popup } from "../popup";
 import { Tooltip } from "../typography";
@@ -161,278 +163,339 @@ export const InfoCard: FunctionComponent<PropsWithChildren<InfoCardPropsInterfac
         className
     );
 
+    const [ enabled, setEnabled ] = useState(true);
+    const [ hover, setHover ] = useState(false);
+    const elementClass = enabled ? "enabled-element" : "disabled-element";
+
+
     return (
-        <Card
-            id={ id }
-            className={ classes }
-            link={ false }
-            as="div"
-            data-componentid={ componentId }
-            data-testid={ testId }
-            onClick={ !action && !disabled && onClick }
-            { ...rest }
-        >
-            <Card.Content>
-                {
-                    ribbon && (
-                        <div className="ribbon">
-                            { ribbon }
-                        </div>
-                    )
-                }
-                {
-                    image && (
-                        <GenericIcon
-                            square
-                            transparent
-                            data-componentid={ `${ componentId }-image` }
-                            data-testid={ `${ testId }-image` }
-                            className="card-image"
-                            size={
-                                fluid && !imageSize
-                                    ? "tiny"
-                                    : imageSize
+
+        <>
+        
+            <Card
+                id={ id }
+                className={ classNames(classes, elementClass) }
+                link={ false }
+                as="div"
+                data-componentid={ componentId }
+                data-testid={ testId }
+                // onClick={ !action && !disabled && onClick }
+                onMouseEnter={ () => setHover(true) }
+                onMouseLeave={ () => setHover(false) }
+                { ...rest }
+                
+            >
+                <div className="header-with-toggle">
+                    <div className="header-without-toggle">
+                        <Card.Content>
+                            {
+                                ribbon && (
+                                    <div className="ribbon">
+                                        { ribbon }
+                                    </div>
+                                )
                             }
-                            icon={ image }
-                            floated="left"
-                            { ...imageOptions }
+                            {
+                                image && (
+                                    <GenericIcon
+                                        square
+                                        transparent
+                                        data-componentid={ `${ componentId }-image` }
+                                        data-testid={ `${ testId }-image` }
+                                        className="card-image"
+                                        size={
+                                            fluid && !imageSize
+                                                ? "tiny"
+                                                : imageSize
+                                        }
+                                        icon={ image }
+                                        floated="left"
+                                        { ...imageOptions }
+                                    />
+                                )
+                            }
+                    
+                            <div className="card-header-section">
+                                { header && (
+                                    <Tooltip
+                                        compact
+                                        size="mini"
+                                        trigger={ (
+                                            <Card.Header
+                                                className="card-header ellipsis"
+                                                data-componentid={ `${ componentId }-header` }
+                                                data-testid={ `${ testId }-header` }
+                                            >
+                                                { header as ReactNode }
+                                            </Card.Header>
+                                        ) }
+                                        content={ header }
+                                        disabled={ typeof showTooltips === "boolean" ? !showTooltips : !showTooltips.header ||
+                                    typeof header !== "string" }
+                                    />
+                                ) }
+                        
+                                {
+                                    description !== undefined && fluid && (
+                                        <Tooltip
+                                            compact
+                                            size="mini"
+                                            trigger={ (
+                                                <Card.Description
+                                                    className="card-description"
+                                                    data-componentid={ `${ componentId }-description` }
+                                                    data-testid={ `${ testId }-description` }
+                                                >
+                                                    { description as ReactNode }
+                                                </Card.Description>
+                                            ) }
+                                            content={ description }
+                                            disabled={ typeof showTooltips === "boolean" ? !showTooltips : 
+                                                !showTooltips.description
+                                        || typeof description !== "string" }
+                                        />
+                                    )
+                                }
+                                {
+                                    githubRepoCard && githubRepoMetaInfo && fluid && (
+                                        <Card.Content
+                                            className="github-meta"
+                                            data-componentid={ `${ componentId }-github-repo-meta` }
+                                            data-testid={ `${ testId }-github-repo-meta` }
+                                        >
+                                            {
+                                                githubRepoMetaInfo.languageLogo && (
+                                                    <Popup
+                                                        trigger={ (
+                                                            <div className="language">
+                                                                <GenericIcon
+                                                                    icon={ githubRepoMetaInfo.languageLogo }
+                                                                    data-componentid={
+                                                                        `${ componentId }-github-repo-language-logo`
+                                                                    }
+                                                                    data-testid={ `${ testId }-github-repo-language-logo` }
+                                                                    size="micro"
+                                                                    transparent
+                                                                    inline
+                                                                    square
+                                                                    spaced="right"
+                                                                    floated="left"
+                                                                />
+                                                            </div>
+                                                        ) }
+                                                        content={ githubRepoMetaInfo.language }
+                                                        inverted
+                                                    />
+                                                )
+                                            }
+                                            <Label.Group
+                                                size="mini"
+                                                data-componentid={ `${ componentId }-github-repo-stats` }
+                                                data-testid={ `${ testId }-github-repo-stats` }
+                                            >
+                                                <Label
+                                                    data-componentid={ `${ componentId }-github-repo-stars` }
+                                                    data-testid={ `${ testId }-github-repo-stars` }
+                                                >
+                                                    <Icon name="star" /> { githubRepoMetaInfo.stars }
+                                                </Label>
+                                                <Label
+                                                    data-componentid={ `${ componentId }-github-repo-forks` }
+                                                    data-testid={ `${ testId }-github-repo-forks` }
+                                                >
+                                                    <Icon name="fork" /> { githubRepoMetaInfo.forks }
+                                                </Label>
+                                                <Label
+                                                    data-componentid={ `${ componentId }-github-repo-watchers` }
+                                                    data-testid={ `${ testId }-github-repo-watchers` }
+                                                >
+                                                    <Icon name="eye" /> { githubRepoMetaInfo.watchers }
+                                                </Label>
+                                            </Label.Group>
+                                        </Card.Content>
+                                    )
+                                }
+                            </div>
+                        </Card.Content>
+                    </div>
+                    <div className="ui idpCard toggle checkbox fitted small">
+                        <input 
+                            type="checkbox" 
+                            checked={ enabled } 
+                            onChange={ () => setEnabled(!enabled) } 
                         />
-                    )
-                }
-                <div className="card-header-section">
-                    { header && (
+                        <label></label>
+                    </div> 
+                </div>
+                { subHeader && (
+                    <Card.Header
+                        className="card-subheader ellipsis"
+                        data-componentid={ `${ componentId }-sub-header` }
+                        data-testid={ `${ testId }-sub-header` }
+                    >
+                        { subHeader }
+                    </Card.Header>
+                ) }
+                { description !== undefined && !fluid && (
+                    <Card.Content className="card-description-container">
                         <Tooltip
                             compact
                             size="mini"
                             trigger={ (
-                                <Card.Header
-                                    className="card-header ellipsis"
-                                    data-componentid={ `${ componentId }-header` }
-                                    data-testid={ `${ testId }-header` }
+                                <Card.Description
+                                    className="card-description"
+                                    data-componentid={ `${ componentId }-description` }
+                                    data-testid={ `${ testId }-description` }
                                 >
-                                    { header as ReactNode }
-                                </Card.Header>
+                                    { description as ReactNode }
+                                </Card.Description>
                             ) }
-                            content={ header }
-                            disabled={ typeof showTooltips === "boolean" ? !showTooltips : !showTooltips.header ||
-                                typeof header !== "string" }
+                            content={ description }
+                            disabled={ typeof showTooltips === "boolean" ? !showTooltips : !showTooltips.description ||
+                                typeof description !== "string" }
                         />
-                    ) }
-                    { subHeader && (
-                        <Card.Header
-                            className="card-subheader ellipsis"
-                            data-componentid={ `${ componentId }-sub-header` }
-                            data-testid={ `${ testId }-sub-header` }
-                        >
-                            { subHeader }
-                        </Card.Header>
-                    ) }
-                    {
-                        description !== undefined && fluid && (
-                            <Tooltip
-                                compact
-                                size="mini"
-                                trigger={ (
-                                    <Card.Description
-                                        className="card-description"
-                                        data-componentid={ `${ componentId }-description` }
-                                        data-testid={ `${ testId }-description` }
-                                    >
-                                        { description as ReactNode }
-                                    </Card.Description>
-                                ) }
-                                content={ description }
-                                disabled={ typeof showTooltips === "boolean" ? !showTooltips : !showTooltips.description
-                                    || typeof description !== "string" }
-                            />
-                        )
-                    }
-                    {
-                        githubRepoCard && githubRepoMetaInfo && fluid && (
+                    </Card.Content>
+                ) }
+                {
+                    (tags && tags instanceof Array)
+                        ? (
                             <Card.Content
-                                className="github-meta"
-                                data-componentid={ `${ componentId }-github-repo-meta` }
-                                data-testid={ `${ testId }-github-repo-meta` }
+                                className="card-tags"
+                                data-componentid={ `${ componentId }-tags` }
+                                data-testid={ `${ testId }-tags` }
                             >
-                                {
-                                    githubRepoMetaInfo.languageLogo && (
-                                        <Popup
-                                            trigger={ (
-                                                <div className="language">
-                                                    <GenericIcon
-                                                        icon={ githubRepoMetaInfo.languageLogo }
-                                                        data-componentid={
-                                                            `${ componentId }-github-repo-language-logo`
-                                                        }
-                                                        data-testid={ `${ testId }-github-repo-language-logo` }
-                                                        size="micro"
-                                                        transparent
-                                                        inline
-                                                        square
-                                                        spaced="right"
-                                                        floated="left"
-                                                    />
-                                                </div>
-                                            ) }
-                                            content={ githubRepoMetaInfo.language }
-                                            inverted
-                                        />
-                                    )
-                                }
-                                <Label.Group
-                                    size="mini"
-                                    data-componentid={ `${ componentId }-github-repo-stats` }
-                                    data-testid={ `${ testId }-github-repo-stats` }
-                                >
-                                    <Label
-                                        data-componentid={ `${ componentId }-github-repo-stars` }
-                                        data-testid={ `${ testId }-github-repo-stars` }
-                                    >
-                                        <Icon name="star" /> { githubRepoMetaInfo.stars }
-                                    </Label>
-                                    <Label
-                                        data-componentid={ `${ componentId }-github-repo-forks` }
-                                        data-testid={ `${ testId }-github-repo-forks` }
-                                    >
-                                        <Icon name="fork" /> { githubRepoMetaInfo.forks }
-                                    </Label>
-                                    <Label
-                                        data-componentid={ `${ componentId }-github-repo-watchers` }
-                                        data-testid={ `${ testId }-github-repo-watchers` }
-                                    >
-                                        <Icon name="eye" /> { githubRepoMetaInfo.watchers }
-                                    </Label>
+                                <Label.Group size="mini">
+                                    {
+                                        tags.map((tag, index) => (
+                                            <Label key={ index }>#{ tag }</Label>
+                                        ))
+                                    }
                                 </Label.Group>
                             </Card.Content>
                         )
-                    }
-                </div>
-            </Card.Content>
-            { description !== undefined && !fluid && (
-                <Card.Content className="card-description-container">
-                    <Tooltip
-                        compact
-                        size="mini"
-                        trigger={ (
-                            <Card.Description
-                                className="card-description"
-                                data-componentid={ `${ componentId }-description` }
-                                data-testid={ `${ testId }-description` }
+                        : null
+                }
+                <div className="ui hidden divider"></div>
+                <div className="instances-container">
+                    <div className="conditions-container">
+                        <div className="instances-conditionOne">
+                            <span className={ enabled ? "enabled" : "disabled" }>
+                                No instances configured
+                            </span>                            
+                            { enabled && (
+                                (action !== undefined) && (
+                                    <Card.Content
+                                        className="action-container"
+                                        data-componentid={ `${ componentId }-action-container` }
+                                        data-testid={ `${ testId }-action-container` }
+                                    >
+                                        {
+                                            typeof action === "string"
+                                                ? (
+                                                    <LinkButton
+                                                        disabled={ disabled }
+                                                        hoverType="underline"
+                                                        className="info-card-inner-action"
+                                                        onClick={ (e: MouseEvent<HTMLButtonElement>) => {
+                                                            onClick(e as unknown as MouseEvent<HTMLAnchorElement>, 
+                                                                null);
+                                                        } }
+                                                    >
+                                                        { action }
+                                                    </LinkButton>
+                                                )
+                                                : action
+                                        }
+                                    </Card.Content>
+                                )
+                            )
+                            }
+                        </div>
+                        <div className="ui instance divider"></div>
+                    </div>
+                    
+                    <div className="instances-buttons">
+                        
+                        { enabled && ( 
+                            <LinkButton 
+                                className="ui idpCreate button" 
+                                onClick={ (e: MouseEvent<HTMLButtonElement>) => {
+                                    onClick(e as unknown as MouseEvent<HTMLAnchorElement>, 
+                                        null);
+                                } }
                             >
-                                { description as ReactNode }
-                            </Card.Description>
+                                Create
+                                <i className="arrow right icon"></i>  
+                            </LinkButton>
                         ) }
-                        content={ description }
-                        disabled={ typeof showTooltips === "boolean" ? !showTooltips : !showTooltips.description ||
-                            typeof description !== "string" }
-                    />
-                </Card.Content>
-            ) }
-            {
-                (tags && tags instanceof Array)
-                    ? (
+                        
+                        <Button className="ui setupGuide button">
+                            <i className="book icon"></i>
+                            Setup Guide 
+                        </Button>
+
+                    </div>
+                </div>
+                {
+                    githubRepoCard && githubRepoMetaInfo && !fluid && (
                         <Card.Content
-                            className="card-tags"
-                            data-componentid={ `${ componentId }-tags` }
-                            data-testid={ `${ testId }-tags` }
+                            className="github-meta"
+                            data-componentid={ `${ componentId }-github-repo-meta` }
+                            data-testid={ `${ testId }-github-repo-meta` }
                         >
-                            <Label.Group size="mini">
-                                {
-                                    tags.map((tag, index) => (
-                                        <Label key={ index }>#{ tag }</Label>
-                                    ))
-                                }
+                            {
+                                githubRepoMetaInfo.languageLogo && (
+                                    <Popup
+                                        trigger={ (
+                                            <div className="language">
+                                                <GenericIcon
+                                                    icon={ githubRepoMetaInfo.languageLogo }
+                                                    data-componentid={ `${ componentId }-github-repo-language-logo` }
+                                                    data-testid={ `${ testId }-github-repo-language-logo` }
+                                                    size="micro"
+                                                    transparent
+                                                    inline
+                                                    square
+                                                    spaced="right"
+                                                    floated="left"
+                                                />
+                                            </div>
+                                        ) }
+                                        content={ githubRepoMetaInfo.language }
+                                        inverted
+                                    />
+                                )
+                            }
+                            <Label.Group
+                                size="mini"
+                                data-componentid={ `${ componentId }-github-repo-stats` }
+                                data-testid={ `${ testId }-github-repo-stats` }
+                            >
+                                <Label
+                                    data-componentid={ `${ componentId }-github-repo-stars` }
+                                    data-testid={ `${ testId }-github-repo-stars` }
+                                >
+                                    <Icon name="star" /> { githubRepoMetaInfo.stars }
+                                </Label>
+                                <Label
+                                    data-componentid={ `${ componentId }-github-repo-forks` }
+                                    data-testid={ `${ testId }-github-repo-forks` }
+                                >
+                                    <Icon name="fork" /> { githubRepoMetaInfo.forks }
+                                </Label>
+                                <Label
+                                    data-componentid={ `${ componentId }-github-repo-watchers` }
+                                    data-testid={ `${ testId }-github-repo-watchers` }
+                                >
+                                    <Icon name="eye" /> { githubRepoMetaInfo.watchers }
+                                </Label>
                             </Label.Group>
                         </Card.Content>
                     )
-                    : null
-            }
-            {
-                githubRepoCard && githubRepoMetaInfo && !fluid && (
-                    <Card.Content
-                        className="github-meta"
-                        data-componentid={ `${ componentId }-github-repo-meta` }
-                        data-testid={ `${ testId }-github-repo-meta` }
-                    >
-                        {
-                            githubRepoMetaInfo.languageLogo && (
-                                <Popup
-                                    trigger={ (
-                                        <div className="language">
-                                            <GenericIcon
-                                                icon={ githubRepoMetaInfo.languageLogo }
-                                                data-componentid={ `${ componentId }-github-repo-language-logo` }
-                                                data-testid={ `${ testId }-github-repo-language-logo` }
-                                                size="micro"
-                                                transparent
-                                                inline
-                                                square
-                                                spaced="right"
-                                                floated="left"
-                                            />
-                                        </div>
-                                    ) }
-                                    content={ githubRepoMetaInfo.language }
-                                    inverted
-                                />
-                            )
-                        }
-                        <Label.Group
-                            size="mini"
-                            data-componentid={ `${ componentId }-github-repo-stats` }
-                            data-testid={ `${ testId }-github-repo-stats` }
-                        >
-                            <Label
-                                data-componentid={ `${ componentId }-github-repo-stars` }
-                                data-testid={ `${ testId }-github-repo-stars` }
-                            >
-                                <Icon name="star" /> { githubRepoMetaInfo.stars }
-                            </Label>
-                            <Label
-                                data-componentid={ `${ componentId }-github-repo-forks` }
-                                data-testid={ `${ testId }-github-repo-forks` }
-                            >
-                                <Icon name="fork" /> { githubRepoMetaInfo.forks }
-                            </Label>
-                            <Label
-                                data-componentid={ `${ componentId }-github-repo-watchers` }
-                                data-testid={ `${ testId }-github-repo-watchers` }
-                            >
-                                <Icon name="eye" /> { githubRepoMetaInfo.watchers }
-                            </Label>
-                        </Label.Group>
-                    </Card.Content>
-                )
-            }
-            {
-                (action !== undefined) && (
-                    <Card.Content
-                        className="action-container"
-                        data-componentid={ `${ componentId }-action-container` }
-                        data-testid={ `${ testId }-action-container` }
-                    >
-                        {
-                            typeof action === "string"
-                                ? (
-                                    <LinkButton
-                                        disabled={ disabled }
-                                        hoverType="underline"
-                                        className="info-card-inner-action"
-                                        onClick={ (e: MouseEvent<HTMLButtonElement>) => {
-                                            onClick(e as unknown as MouseEvent<HTMLAnchorElement>, null);
-                                        } }
-                                    >
-                                        { action }
-                                        <Icon name="caret right" />
-                                    </LinkButton>
-                                )
-                                : action
-                        }
-                    </Card.Content>
-                )
-            }
-            { children }
-        </Card>
+                }
+                { children }
+            </Card>
+        </>
     );
 };
 
