@@ -46,6 +46,7 @@ import {
 } from "../../core";
 import { getAuthenticatorTags, getAuthenticators, getIdentityProviderList } from "../api";
 import { AuthenticatorGrid, IdentityProviderList, handleGetIDPListCallError } from "../components";
+import CardSection from "../components/static-card/card-section";
 import { IdentityProviderManagementConstants } from "../constants";
 import { AuthenticatorMeta } from "../meta";
 import {
@@ -567,6 +568,13 @@ const IdentityProvidersPage: FunctionComponent<IDPPropsInterface> = (props: IDPP
                             loading: t("common:loading")
                         } }
                     >
+                        <GridLayout>
+                            <CardSection/>
+                        </GridLayout>
+
+                        <div className="social-integration-title">
+                            Social Integrations
+                        </div>
                         <AuthenticatorGrid
                             isLoading= { isIdPListRequestLoading || isAuthenticatorFetchRequestRequestLoading }
                             authenticators={ showFilteredList ? authenticators : idpList?.identityProviders }
