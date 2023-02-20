@@ -1,0 +1,12 @@
+<!--
+ * Copyright (c) 2023, WSO2 Inc. (http://www.wso2.com). All Rights Reserved.
+ * 
+ * This software is the property of WSO2 Inc. and its suppliers, if any.
+ * Dissemination of any information or reproduction of any material contained
+ * herein in any form is strictly forbidden, unless permitted by WSO2 expressly.
+ * You may not alter or remove any copyright or other notice from copies of this content."
+-->
+
+<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+  <path id="validate-icon" d="M7,14a7.01,7.01,0,1,1,4.862-1.968h1.687v.58H11.179l-.025.019-.014-.019h-.5v-2.9h.58V11.8A6.4,6.4,0,1,0,7,13.4V14H7ZM6.085,9.8,3.611,7.325,4.036,6.9,6.089,8.953,10.042,5l.425.424L6.224,9.667h0l0,0L6.087,9.8h0Z"/>
+</svg>

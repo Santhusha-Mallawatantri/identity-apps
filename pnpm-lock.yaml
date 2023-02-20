@@ -327,6 +327,9 @@ importers:
   apps/console:
     specifiers:
       '@asgardeo/auth-react': ^1.1.18
+      '@microsoft/applicationinsights-core-js': ^2.8.10
+      '@microsoft/applicationinsights-react-js': ^3.4.1
+      '@microsoft/applicationinsights-web': ^2.8.10
       '@pmmmwh/react-refresh-webpack-plugin': ^0.4.3
       '@svgr/webpack': 4.3.2
       '@testing-library/dom': ^7.24.3
@@ -349,6 +352,7 @@ importers:
       '@types/redux-mock-store': ^1.0.2
       '@types/testing-library__jest-dom': ^5.14.3
       '@types/ua-parser-js': 0.7.36
+      '@types/uuid': ^9.0.0
       '@types/webpack-env': ^1.16.0
       '@typescript-eslint/eslint-plugin': ^4.17.0
       '@typescript-eslint/parser': ^4.17.0
@@ -421,8 +425,13 @@ importers:
       ts-node: ^10.8.1
       typescript: ^4.6.4
       ua-parser-js: 0.7.28
+      uuid: ^8.3.0
     dependencies:
       '@asgardeo/auth-react': 1.1.18_lgf4z6atbkptvpgsbfea37y6zq
+      '@microsoft/applicationinsights-core-js': 2.8.10
+      '@microsoft/applicationinsights-react-js': 3.4.1_yijln67rc5pnbgydcxuqjkmjce
+      '@microsoft/applicationinsights-web': 2.8.10
+      '@types/uuid': 9.0.0
       '@wso2is/access-control': link:../../modules/access-control
       '@wso2is/core': link:../../modules/core
       '@wso2is/form': link:../../modules/form
@@ -468,6 +477,7 @@ importers:
       styled-components: 4.4.1_biqbaboplfbrettd7655fr4n2y
       swr: 1.3.0_react@18.2.0
       ua-parser-js: 0.7.28
+      uuid: 8.3.2
     devDependencies:
       '@pmmmwh/react-refresh-webpack-plugin': 0.4.3_react-refresh@0.9.0
       '@svgr/webpack': 4.3.2
@@ -523,6 +533,9 @@ importers:
     specifiers:
       '@asgardeo/auth-react': ^1.1.18
       '@babel/polyfill': ^7.0.0
+      '@microsoft/applicationinsights-core-js': ^2.8.10
+      '@microsoft/applicationinsights-react-js': ^3.4.1
+      '@microsoft/applicationinsights-web': ^2.8.10
       '@testing-library/jest-dom': ^5.11.9
       '@types/history': ^4.7.3
       '@types/jest': ^26.0.14
@@ -595,6 +608,9 @@ importers:
     dependencies:
       '@asgardeo/auth-react': 1.1.18_lgf4z6atbkptvpgsbfea37y6zq
       '@babel/polyfill': 7.12.1
+      '@microsoft/applicationinsights-core-js': 2.8.10
+      '@microsoft/applicationinsights-react-js': 3.4.1_yijln67rc5pnbgydcxuqjkmjce
+      '@microsoft/applicationinsights-web': 2.8.10
       '@wso2is/access-control': link:../../modules/access-control
       '@wso2is/core': link:../../modules/core
       '@wso2is/forms': link:../../modules/forms
@@ -4450,6 +4466,107 @@ packages:
 
   /@mdx-js/util/1.6.22:
     resolution: {integrity: sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==}
+
+  /@microsoft/applicationinsights-analytics-js/2.8.10:
+    resolution: {integrity: sha512-JugJ3oXnKZuxeJSsFYNKyGiwaQ5Or5Z8n6aGiyngi38QJ/wcbiI9p71gK1dntJ6V2hB78zhbXvUim9TLXagfbQ==}
+    peerDependencies:
+      tslib: '*'
+    dependencies:
+      '@microsoft/applicationinsights-common': 2.8.10
+      '@microsoft/applicationinsights-core-js': 2.8.10
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+    dev: false
+
+  /@microsoft/applicationinsights-channel-js/2.8.10:
+    resolution: {integrity: sha512-jXEUw3+U6WABygDOjEIlCLsniUpPqH5d/1Rfj1MVWMW6FFZo1vvYZoziOqb+dWWn41Dn5GF4EgXnvsfdkpz29w==}
+    peerDependencies:
+      tslib: '*'
+    dependencies:
+      '@microsoft/applicationinsights-common': 2.8.10
+      '@microsoft/applicationinsights-core-js': 2.8.10
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+    dev: false
+
+  /@microsoft/applicationinsights-common/2.8.10:
+    resolution: {integrity: sha512-wXji97I1eANL5PG8RxZ/st+HCwKgAB1uySSxEvVNj3VcOiUyTYTtBYYEK2xhjBGR49+A2/fIJQHvu1ygco2b3Q==}
+    peerDependencies:
+      tslib: '*'
+    dependencies:
+      '@microsoft/applicationinsights-core-js': 2.8.10
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+    dev: false
+
+  /@microsoft/applicationinsights-core-js/2.8.10:
+    resolution: {integrity: sha512-jQrufDW0+sV8fBhRvzIPNGiCC6dELH+Ug0DM5CfN9757TBqZJz8CSWyDjex39as8+jD0F/8HRU9QdmrVgq5vFg==}
+    peerDependencies:
+      tslib: '*'
+    dependencies:
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+    dev: false
+
+  /@microsoft/applicationinsights-dependencies-js/2.8.10:
+    resolution: {integrity: sha512-vBsFdQ6yaVfs8Sacw4/QWzlU2lDcXUeSJ2ZHqCuLyyUA4oUgEefEJdr1XMK5O7HCKFKU1kBACuyETu0SN8m+NQ==}
+    peerDependencies:
+      tslib: '*'
+    dependencies:
+      '@microsoft/applicationinsights-common': 2.8.10
+      '@microsoft/applicationinsights-core-js': 2.8.10
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+    dev: false
+
+  /@microsoft/applicationinsights-properties-js/2.8.10:
+    resolution: {integrity: sha512-f7+U4n3RX1qoh0Vt/o7EegYRfMWzfGxYCJDZKB5qxNInqEgoXosGUCc1pZSnk7B4Urc8QJwWn3iQrg2Ib+JMFw==}
+    peerDependencies:
+      tslib: '*'
+    dependencies:
+      '@microsoft/applicationinsights-common': 2.8.10
+      '@microsoft/applicationinsights-core-js': 2.8.10
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+    dev: false
+
+  /@microsoft/applicationinsights-react-js/3.4.1_yijln67rc5pnbgydcxuqjkmjce:
+    resolution: {integrity: sha512-oosMkymmkkulUdFcUbqKc64Li0KpItmV/pClOr4DCLAxbitCjHDkKdxodvpUzMHVs1ko9cHP360oc1QVXprhXQ==}
+    peerDependencies:
+      history: '>= 4.10.1'
+      react: '>= 17.0.1'
+      tslib: '*'
+    dependencies:
+      '@microsoft/applicationinsights-common': 2.8.10
+      '@microsoft/applicationinsights-core-js': 2.8.10
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+      history: 4.10.1
+      react: 18.2.0
+    dev: false
+
+  /@microsoft/applicationinsights-shims/2.0.2:
+    resolution: {integrity: sha512-PoHEgsnmcqruLNHZ/amACqdJ6YYQpED0KSRe6J7gIJTtpZC1FfFU9b1fmDKDKtFoUSrPzEh1qzO3kmRZP0betg==}
+    dev: false
+
+  /@microsoft/applicationinsights-web/2.8.10:
+    resolution: {integrity: sha512-91FsmjAhDmD+CzwckiW1+dI3U1EgXsPnduGxukIBv2xTIsL1aUfIzW3j2Qmjn8ABblowRkDEpUf7KFnPwRpMSw==}
+    peerDependencies:
+      tslib: '*'
+    dependencies:
+      '@microsoft/applicationinsights-analytics-js': 2.8.10
+      '@microsoft/applicationinsights-channel-js': 2.8.10
+      '@microsoft/applicationinsights-common': 2.8.10
+      '@microsoft/applicationinsights-core-js': 2.8.10
+      '@microsoft/applicationinsights-dependencies-js': 2.8.10
+      '@microsoft/applicationinsights-properties-js': 2.8.10
+      '@microsoft/applicationinsights-shims': 2.0.2
+      '@microsoft/dynamicproto-js': 1.1.7
+    dev: false
+
+  /@microsoft/dynamicproto-js/1.1.7:
+    resolution: {integrity: sha512-SK3D3aVt+5vOOccKPnGaJWB5gQ8FuKfjboUJHedMP7gu54HqSCXX5iFXhktGD8nfJb0Go30eDvs/UDoTnR2kOA==}
+    dev: false
 
   /@microsoft/tsdoc-config/0.16.1:
     resolution: {integrity: sha512-2RqkwiD4uN6MLnHFljqBlZIXlt/SaUT6cuogU1w2ARw4nKuuppSmR0+s+NC+7kXBQykd9zzu0P4HtBpZT5zBpQ==}
@@ -9862,6 +9979,10 @@ packages:
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
 
+  /@types/uuid/9.0.0:
+    resolution: {integrity: sha512-kr90f+ERiQtKWMz5rP32ltJ/BtULDI5RVO0uavn1HQUOwjx0R1h0rnDYNL0CepF1zL5bSY6FISAfd9tOdDhU5Q==}
+    dev: false
+
   /@types/webappsec-credential-management/0.6.2:
     resolution: {integrity: sha512-/6w8wmKQOFh+1CL99fcFhH7lli1/ExBdAawXsVPXFC5MBOS6ww/4cmK4crpCw51RaG6sTr477N17Y84l0G69IA==}
     dev: true
@@ -11180,7 +11301,7 @@ packages:
       loader-utils: 2.0.2
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
 
   /babel-loader/8.2.5_tb6moc662p5idmcg3l5ipbhpta:
     resolution: {integrity: sha512-OSiFfH89LrEMiWd4pLNqGz4CwJDtbs2ZVc+iGu2HrkRfPxId9F2anQj38IxWpmRfsUY0aBZYi1EFcd3mhtRMLQ==}
@@ -11629,6 +11750,7 @@ packages:
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     optional: true
@@ -13226,7 +13348,7 @@ packages:
       postcss-value-parser: 4.2.0
       schema-utils: 2.7.1
       semver: 6.3.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
 
   /css-loader/5.2.7_webpack@5.74.0:
     resolution: {integrity: sha512-Q7mOvpBNBG7YrVGMxRxcBJZFL75o+cH2abNASdibkj/fffYD8qWbInZrD0S9ccI6vZclF3DsHE7njGlLtaHbhg==}
@@ -13244,7 +13366,7 @@ packages:
       postcss-value-parser: 4.2.0
       schema-utils: 3.1.1
       semver: 7.3.7
-      webpack: 5.74.0
+      webpack: 5.74.0_bdpyzxlxn2s535yh6txwrz5j3y
 
   /css-loader/6.7.1_webpack@5.74.0:
     resolution: {integrity: sha512-yB5CNFa14MbPJcomwNh3wLThtkZgcNyI2bNMRt8iE5Z8Vwl7f8vQXFAzn2HDOJvtDq2NTZBUGMSUNNyrv3/+cw==}
@@ -15502,7 +15624,7 @@ packages:
     dependencies:
       loader-utils: 2.0.2
       schema-utils: 3.1.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
 
   /file-loader/6.2.0_webpack@5.74.0:
     resolution: {integrity: sha512-qo3glqyTa61Ytg4u73GultjHGjdRyig3tG6lPtyX/jOEJvHif9uB0/OCI2Kif6ctF3caQTW2G5gym21oAsI4pw==}
@@ -15527,6 +15649,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     optional: true
 
   /filelist/1.0.4:
@@ -15701,17 +15824,6 @@ packages:
       debug:
         optional: true
 
-  /follow-redirects/1.15.1_debug@4.3.4:
-    resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.4_supports-color@6.1.0
-
   /follow-redirects/1.5.10:
     resolution: {integrity: sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==}
     engines: {node: '>=4.0'}
@@ -15768,7 +15880,7 @@ packages:
       semver: 5.7.1
       tapable: 1.1.3
       typescript: 4.8.2
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
       worker-rpc: 0.1.1
     transitivePeerDependencies:
       - supports-color
@@ -15896,7 +16008,7 @@ packages:
       semver: 7.3.7
       tapable: 1.1.3
       typescript: 4.8.2
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
 
   /form-data/2.3.3:
     resolution: {integrity: sha512-1lLKB2Mu3aGP1Q/2eCOx0fNbRMe7XdwktwOruhfqqd0rIJWwN4Dh+E3hrPSlDCXnSR7UtZ1N38rVXm+6+MEhJQ==}
@@ -16834,7 +16946,7 @@ packages:
       pretty-error: 2.1.2
       tapable: 1.1.3
       util.promisify: 1.0.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
 
   /html-webpack-plugin/5.5.0_webpack@5.74.0:
     resolution: {integrity: sha512-sy88PC2cRTVxvETRgUHFrL4No3UxvcH8G1NepGhqaTT+GXN2kTamqasot0inS5hXeg1cMbFDt27zzo9p35lZVw==}
@@ -16981,7 +17093,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1_debug@4.3.4
+      follow-redirects: 1.15.1
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -20896,6 +21008,7 @@ packages:
 
   /nan/2.16.0:
     resolution: {integrity: sha512-UdAqHyFngu7TfQKsCBgAA6pWDkT8MAO7d0jyOecVhN5354xbLqdn8mV9Tat9gepAupm0bt2DbeaSC8vS52MuFA==}
+    requiresBuild: true
     optional: true
 
   /nanoid/3.1.20:
@@ -22427,7 +22540,7 @@ packages:
       postcss: 7.0.39
       schema-utils: 3.1.1
       semver: 7.3.7
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
 
   /postcss-loader/6.2.1_qjv4cptcpse3y5hrjkrbb7drda:
     resolution: {integrity: sha512-WbbYpmAaKcux/P66bZ40bpWsBucjx/TTgVVzRZ9yUO8yQfVBlameJ0ZGVaPfH64hNSBh63a+ICP5nqOpBA0w+Q==}
@@ -23213,7 +23326,7 @@ packages:
     dependencies:
       loader-utils: 2.0.2
       schema-utils: 3.1.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
 
   /raw-loader/4.0.2_webpack@5.74.0:
     resolution: {integrity: sha512-ZnScIV3ag9A4wPX/ZayxL/jZH+euYb6FcUinPcgiQW0+UBtEv0O6Q3lGd3cqJ+GHH+rksEv3Pj99oxJ3u3VIKA==}
@@ -26119,7 +26232,7 @@ packages:
     dependencies:
       loader-utils: 2.0.2
       schema-utils: 2.7.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
 
   /style-loader/2.0.0_webpack@5.74.0:
     resolution: {integrity: sha512-Z0gYUJmzZ6ZdRUqpg1r8GsaFKypE+3xAzuFeMuoHgjc9KZv3wMyCRjQIWEbhoFSq7+7yoHXySDJyyWQaPajeiQ==}
@@ -26129,7 +26242,7 @@ packages:
     dependencies:
       loader-utils: 2.0.2
       schema-utils: 3.1.1
-      webpack: 5.74.0
+      webpack: 5.74.0_bdpyzxlxn2s535yh6txwrz5j3y
 
   /style-loader/3.3.1_webpack@5.74.0:
     resolution: {integrity: sha512-GPcQ+LDJbrcxHORTRes6Jy2sfvK2kS6hpSfI/fXhPt+spVzxF6LJ1dHLN9zIGmVaaP044YKaIatFaufENRiDoQ==}
@@ -26447,7 +26560,7 @@ packages:
       serialize-javascript: 4.0.0
       source-map: 0.6.1
       terser: 4.8.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
 
@@ -26465,7 +26578,7 @@ packages:
       serialize-javascript: 5.0.1
       source-map: 0.6.1
       terser: 5.15.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
       webpack-sources: 1.4.3
     transitivePeerDependencies:
       - bluebird
@@ -26516,6 +26629,7 @@ packages:
       serialize-javascript: 6.0.0
       terser: 5.15.0
       webpack: 5.74.0
+    dev: false
 
   /terser/4.8.1:
     resolution: {integrity: sha512-4GnLC0x667eJG0ewJTa6z/yXrbLGv80D9Ru6HIpCQmO+Q4PfEtBFi0ObSckqwL6VyQv/7ENJieXHo2ANmdQwgw==}
@@ -27541,7 +27655,7 @@ packages:
       loader-utils: 2.0.2
       mime-types: 2.1.35
       schema-utils: 3.1.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
 
   /url-loader/4.1.1_uo2vrhn7sn35p2mj7ofrf5eeca:
     resolution: {integrity: sha512-3BTV812+AVHHOJQO8O5MkWgZ5aosP7GnROJwvzLS9hWDj00lZ6Z0wNak423Lp9PBZN05N+Jk/N5Si8jRAlGyWA==}
@@ -27969,7 +28083,7 @@ packages:
       mime: 2.6.0
       mkdirp: 0.5.6
       range-parser: 1.2.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
       webpack-log: 2.0.0
 
   /webpack-dev-middleware/3.7.3_webpack@5.74.0:
@@ -27997,7 +28111,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 3.1.1
-      webpack: 5.74.0
+      webpack: 5.74.0_bdpyzxlxn2s535yh6txwrz5j3y
 
   /webpack-dev-middleware/5.3.3_webpack@5.74.0:
     resolution: {integrity: sha512-hj5CYrY0bZLB+eTO+x/j67Pkrquiy7kWepMHmUMoPsmcUaeEnQJqFzHJOyxgWlq746/wUuA64p9ta34Kyb01pA==}
@@ -28118,7 +28232,7 @@ packages:
     peerDependencies:
       webpack: ^2.0.0 || ^3.0.0 || ^4.0.0
     dependencies:
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@4.10.0
 
   /webpack-hot-middleware/2.25.2:
     resolution: {integrity: sha512-CVgm3NAQyfdIonRvXisRwPTUYuSbyZ6BY7782tMeUzWOO7RmVI2NaBYuCp41qyD4gYCkJyTneAJdK69A13B0+A==}
@@ -28269,7 +28383,6 @@ packages:
       webpack-sources: 1.4.3
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /webpack/5.74.0:
     resolution: {integrity: sha512-A2InDwnhhGN4LYctJj6M1JEaGL7Luj6LOmyBHjcI8529cm5p6VXiTIW2sn6ffvEAKmveLzvu4jrihwXtPojlAA==}
@@ -28309,6 +28422,7 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
+    dev: false
 
   /webpack/5.74.0_bdpyzxlxn2s535yh6txwrz5j3y:
     resolution: {integrity: sha512-A2InDwnhhGN4LYctJj6M1JEaGL7Luj6LOmyBHjcI8529cm5p6VXiTIW2sn6ffvEAKmveLzvu4jrihwXtPojlAA==}
