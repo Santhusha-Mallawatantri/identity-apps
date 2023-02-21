@@ -1,98 +1,136 @@
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable sort-keys */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/typedef */
+/* eslint-disable header/header */
 /**
- * Copyright (c) 2022, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
+ * Copyright (c) 2023, WSO2 LLC. (https://www.wso2.com) All Rights Reserved.
  *
- * WSO2 LLC. licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * This software is the property of WSO2 LLC. and its suppliers, if any.
+ * Dissemination of any information or reproduction of any material contained
+ * herein in any form is strictly forbidden, unless permitted by WSO2 expressly.
+ * You may not alter or remove any copyright or other notice from copies of this content.
  */
+import { Code, CopyInputField, Heading, Message } from "@wso2is/react-components";
+import { AppState, ConfigReducerStateInterface } from "apps/console/src/features/core";
+import React, { useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { Button, Progress, Segment, Sidebar } from "semantic-ui-react";
 
-import { TestableComponentInterface } from "@wso2is/core/models";
-import { Heading } from "@wso2is/react-components";
-import React, { FunctionComponent, ReactElement } from "react";
-import { useTranslation } from "react-i18next";
-import { Divider } from "semantic-ui-react";
+const OrganizationEnterpriseIdentityProviderCreateWizardHelp = () => {
+    const { t } = useTranslation();
+    const [ useNewConnectionsView, setUseNewConnectionsView ] = useState<boolean>(undefined);
+    const config: ConfigReducerStateInterface = useSelector((state: AppState) => state.config);
 
-/**
- * Prop types of the component.
- */
-type OrganizationEnterpriseIdentityProviderCreateWizardHelpPropsInterface = TestableComponentInterface
+    const CONTENTS = [
+        {
+            id: 0,
+            title: t("console:develop.features.authenticationProvider.templates.organizationIDP" +
+            ".wizardHelp.name.heading"),
+            body: (
+                <><p>
+                    {
+                        t("console:develop.features.authenticationProvider.templates.organizationIDP" +
+                        ".wizardHelp.name.description")
+                    }
+                </p>
+                <p>E.g., MyOrgEnterpriseAuthProvider.</p>
+                </>
+            )
+        },
+        {
+            id: 1,
+            title:  t("console:develop.features.authenticationProvider.templates.organizationIDP" +
+            ".wizardHelp.description.heading"),
+    
+            body:(    
+                <><p>
+                    { t("console:develop.features.authenticationProvider.templates.organizationIDP" +
+                        ".wizardHelp.description.description") }
+                </p>
+                <p>
+                    { t("console:develop.features.authenticationProvider.templates.organizationIDP" +
+                            ".wizardHelp.description.example") }
+                </p>
+                </>      
+            )
+        }
+    ];
 
-/**
- * Help content for the custom IDP template creation wizard.
- *
- * @param props - Props injected into the component.
- * @returns OrganizationEnterpriseIdentityProviderCreateWizardHelp component.
- */
-const OrganizationEnterpriseIdentityProviderCreateWizardHelp:
-    FunctionComponent<OrganizationEnterpriseIdentityProviderCreateWizardHelpPropsInterface> = (
-        props: OrganizationEnterpriseIdentityProviderCreateWizardHelpPropsInterface
-    ): ReactElement => {
+    const [ currentContent, setCurrentContent ] = useState(0);
 
-        const {
-            ["data-testid"]: testId
-        } = props;
+    const handleClickLeft = () => setCurrentContent((c) => (c > 0 ? c - 1 : c));
+    const handleClickRight = () =>
+        setCurrentContent((c) => (c < CONTENTS.length - 1 ? c + 1 : c));
 
-        const { t } = useTranslation();
+    const isLeftButtonDisabled = currentContent === 0;
+    const isRightButtonDisabled = currentContent === CONTENTS.length - 1;
 
-        return (
-            <>
-                <div data-testid={ testId }>
-                    <Heading as="h5">
-                        {
-                            t("console:develop.features.authenticationProvider.templates.organizationIDP" +
-                                ".wizardHelp.name.heading")
-                        }
-                    </Heading>
-                    <p>
-                        {
-                            t("console:develop.features.authenticationProvider.templates.organizationIDP" +
-                                ".wizardHelp.name.description")
-                        }
-                    </p>
-                    <p>E.g., MyOrgEnterpriseAuthProvider.</p>
+    const leftButtonColor = isLeftButtonDisabled ? "grey" : "orange";
+    const rightButtonColor = isRightButtonDisabled ? "grey" : "orange";
+
+    const progress = (currentContent / (CONTENTS.length - 1)) * 100;
+
+    return (
+        <Sidebar.Pushable>
+            <Sidebar
+                as={ Segment }
+                animation="overlay"
+                direction="left"
+                visible
+                icon="labeled"
+                vertical
+                className="idp-sidepanel-sidebar"
+            >
+                <div className="idp-sidepanel-content">
+                    { CONTENTS.map(({ id, title, body }) => (
+                        <div key={ id } style={ { display: currentContent === id ? "block" : "none" } }>
+                            <Segment
+                                className="idp-sidepanel-segment">
+                                <h2>{ title }</h2>
+                                <p>{ body }</p>
+                            </Segment>
+                        </div>
+                    )) }
                 </div>
-
-                <Divider/>
-
-                <div data-testid={ testId }>
-                    <Heading as="h5">
-                        {
-                            t("console:develop.features.authenticationProvider.templates.organizationIDP" +
-                                ".wizardHelp.description.heading")
-                        }
-                    </Heading>
-                    <p>
-                        {
-                            t("console:develop.features.authenticationProvider.templates.organizationIDP" +
-                                ".wizardHelp.description.description")
-                        }
-                    </p>
-                    <p>
-                        {
-                            t("console:develop.features.authenticationProvider.templates.organizationIDP" +
-                                ".wizardHelp.description.example")
-                        }
-                    </p>
+                <div className="idp-sidepanel-footer">
+                    <Progress
+                        percent={ progress }
+                        progress
+                        className="idp-sidepanel-progress"
+                        color="orange"
+                        size="tiny"
+                    />
+                    <div className="idp-sidepanel-buttons">
+                        <Button
+                            icon="chevron left"
+                            color={ leftButtonColor }
+                            onClick={ handleClickLeft }
+                            className="idp-sidepanel-button"
+                            disabled={ isLeftButtonDisabled }
+                        />
+                        <Button
+                            icon="chevron right"
+                            color={ rightButtonColor }
+                            onClick={ handleClickRight }
+                            className="idp-sidepanel-button"
+                            disabled={ isRightButtonDisabled }
+                        >
+                        </Button>
+                    </div>
                 </div>
-            </>
-        );
-    };
+            </Sidebar>
+        </Sidebar.Pushable>
+    );
+};
 
 /**
  * Default props for the component
  */
 OrganizationEnterpriseIdentityProviderCreateWizardHelp.defaultProps = {
-    "data-testid": "organization-enterprise-app-create-wizard-help"
+    "data-testid": "google-idp-create-wizard-help"
 };
 
 /**
