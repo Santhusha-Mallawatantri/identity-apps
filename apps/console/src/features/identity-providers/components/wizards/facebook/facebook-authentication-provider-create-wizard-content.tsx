@@ -1,3 +1,4 @@
+
 /**
  * Copyright (c) 2021, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
  *
@@ -16,6 +17,7 @@
  * under the License.
  */
 
+// eslint-disable-next-line header/header
 import { TestableComponentInterface } from "@wso2is/core/models";
 import { Field, Wizard, WizardPage } from "@wso2is/form";
 import React, { FunctionComponent, ReactElement, useEffect, useState } from "react";
@@ -38,6 +40,9 @@ interface GithubAuthenticationProviderCreateWizardContentPropsInterface extends 
      * @param submitFunctionCb - Callback.
      */
     triggerSubmission: (submitFunctionCb: () => void) => void;
+    
+        setOnFocus:any
+
     /**
      * Trigger previous page.
      * @param previousFunctionCb - Callback.
@@ -85,6 +90,7 @@ export const FacebookAuthenticationProviderCreateWizardContent: FunctionComponen
         template,
         setTotalPage,
         onSubmit,
+        setOnFocus,
         [ "data-testid" ]: testId
     } = props;
 
@@ -193,6 +199,10 @@ export const FacebookAuthenticationProviderCreateWizardContent: FunctionComponen
                 >
                     <WizardPage validate={ validateForm }>
                         <Field.Input
+                            onFocus={ () => { 
+                                setOnFocus(1);
+                            // next();
+                            } }
                             ariaLabel="Facebook IDP Name"
                             inputType="name"
                             name="name"
@@ -214,6 +224,10 @@ export const FacebookAuthenticationProviderCreateWizardContent: FunctionComponen
                             width={ 13 }
                         />
                         <Field.Input
+                            onFocus={ () => { 
+                                setOnFocus(2);
+                                // next();
+                            } }
                             ariaLabel="Facebook Client ID"
                             inputType="client_id"
                             name="clientId"
@@ -244,6 +258,10 @@ export const FacebookAuthenticationProviderCreateWizardContent: FunctionComponen
                             width={ 13 }
                         />
                         <Field.Input
+                            onFocus={ () => { 
+                                setOnFocus(3);
+                                // next();
+                            } }
                             ariaLabel="Facebook Client Secret"
                             inputType="password"
                             className="addon-field-wrapper"

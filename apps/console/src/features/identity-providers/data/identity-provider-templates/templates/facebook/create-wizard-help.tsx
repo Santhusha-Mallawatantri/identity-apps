@@ -14,88 +14,95 @@
  */
 import { Code, CopyInputField, Heading, Message } from "@wso2is/react-components";
 import { AppState, ConfigReducerStateInterface } from "apps/console/src/features/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Button, Progress, Segment, Sidebar } from "semantic-ui-react";
 
-const FacebookIdentityProviderCreateWizardHelp = () => {
+type props = {
+    current: any
+}
+const FacebookIdentityProviderCreateWizardHelp = ({ current } : props) => {
     const { t } = useTranslation();
     const [ useNewConnectionsView, setUseNewConnectionsView ] = useState<boolean>(undefined);
     const config: ConfigReducerStateInterface = useSelector((state: AppState) => state.config);
+    const [ currentState, setCurrentState ] = useState <any>();
 
+    useEffect(() => {
+        setCurrentState(current);
+    }, [ current ]);
     const CONTENTS = [
         {
             id: 0,
             body: (
-                <><Message
-                    type="info"
-                    header={
-                        t("console:develop.features.authenticationProvider.templates.facebook." +
-                    "wizardHelp.preRequisites.heading")
-                    }
-                    content={
-                        (<>
-                            <p>
-                                <Trans
-                                    i18nKey={
-                                        "console:develop.features.authenticationProvider.templates.facebook." +
-                                    "wizardHelp.preRequisites.getCredentials"
-                                    }
-                                >
-                            Before you begin, create an <strong>application</strong> <a
-                                        href="https://developers.facebook.com/"
+                <>
+                    <Message
+                        type="info"
+                        header={
+                            t("console:develop.features.authenticationProvider.templates.facebook." +
+                        "wizardHelp.preRequisites.heading")
+                        }
+                        content={
+                            (<>
+                                <p>
+                                    <Trans
+                                        i18nKey={
+                                            "console:develop.features.authenticationProvider.templates.facebook." +
+                                        "wizardHelp.preRequisites.getCredentials"
+                                        }
+                                    >
+                                Before you begin, create an <strong>application</strong> <a
+                                            href="https://developers.facebook.com/"
+                                            target="_blank"
+                                            rel="noopener noreferrer">
+                                on Facebook Developer Console
+                                        </a>, and obtain a <strong>App ID & secret</strong>.
+                                    </Trans>
+                                </p>
+                                <p>
+    
+                                    <Trans
+                                        i18nKey={
+                                            "console:develop.features.authenticationProvider.templates.facebook." +
+                                        "wizardHelp.preRequisites.configureSiteURL"
+                                        }
+                                    >
+                                Use the following as the <strong>Site URL</strong>.
+                                    </Trans>
+    
+                                    <CopyInputField
+                                        className="copy-input-dark spaced"
+                                        value={ config?.deployment?.customServerHost }
+                                    />
+                                </p>
+                                <p>
+                                    <Trans
+                                        i18nKey={
+                                            "console:develop.features.authenticationProvider.templates.facebook." +
+                                        "wizardHelp.preRequisites.configureRedirectURL"
+                                        }
+                                    >
+                                Add the following URL as a <strong>Valid OAuth Redirect URI</strong>.
+                                    </Trans>
+    
+                                    <CopyInputField
+                                        className="copy-input-dark spaced"
+                                        value={ config?.deployment?.customServerHost + "/commonauth" }
+                                    />
+    
+                                    <a
+                                        href="https://developers.facebook.com/docs/development/create-an-app"
                                         target="_blank"
                                         rel="noopener noreferrer">
-                            on Facebook Developer Console
-                                    </a>, and obtain a <strong>App ID & secret</strong>.
-                                </Trans>
-                            </p>
-                            <p>
-
-                                <Trans
-                                    i18nKey={
-                                        "console:develop.features.authenticationProvider.templates.facebook." +
-                                    "wizardHelp.preRequisites.configureSiteURL"
-                                    }
-                                >
-                            Use the following as the <strong>Site URL</strong>.
-                                </Trans>
-
-                                <CopyInputField
-                                    className="copy-input-dark spaced"
-                                    value={ config?.deployment?.customServerHost }
-                                />
-                            </p>
-                            <p>
-                                <Trans
-                                    i18nKey={
-                                        "console:develop.features.authenticationProvider.templates.facebook." +
-                                    "wizardHelp.preRequisites.configureRedirectURL"
-                                    }
-                                >
-                            Add the following URL as a <strong>Valid OAuth Redirect URI</strong>.
-                                </Trans>
-
-                                <CopyInputField
-                                    className="copy-input-dark spaced"
-                                    value={ config?.deployment?.customServerHost + "/commonauth" }
-                                />
-
-                                <a
-                                    href="https://developers.facebook.com/docs/development/create-an-app"
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                    {
-                                        t("console:develop.features.authenticationProvider.templates.facebook" +
-                                    ".wizardHelp.preRequisites.configureOAuthApps")
-                                    }
-                                </a>
-                            </p>
-                        </>)
-                    }
-                />
-
+                                        {
+                                            t("console:develop.features.authenticationProvider.templates.facebook" +
+                                        ".wizardHelp.preRequisites.configureOAuthApps")
+                                        }
+                                    </a>
+                                </p>
+                            </>)
+                        }
+                    />
                 </>
                     
             )
@@ -103,20 +110,18 @@ const FacebookIdentityProviderCreateWizardHelp = () => {
         {
             id: 1,
             title:  t("console:develop.features.authenticationProvider.templates.facebook" +
-            ".wizardHelp.name.heading"),
-    
+            ".wizardHelp.name.heading"), 
             body:(    
-                t("Provide a unique name for the selected identity provider to be easily identifiable.")            
-                // <p>
-                // {
-                //     useNewConnectionsView
-                //         ? t("console:develop.features.authenticationProvider.templates.facebook." +
-                //                 "wizardHelp.name.connectionDescription")
-                //         : t("console:develop.features.authenticationProvider.templates.facebook." +
-                //                 "wizardHelp.name.idpDescription")
-                // }
-                // </p>          
+                <p>
+                    {
+                        useNewConnectionsView
+                            ? t("console:develop.features.authenticationProvider.templates.facebook." +
+                                    "wizardHelp.name.connectionDescription")
+                            : t("Provide a unique name for the selected identity provider to be easily identifiable.")
+                    }
+                </p>                
             )
+
         },
         {
             id: 2,
@@ -156,17 +161,25 @@ const FacebookIdentityProviderCreateWizardHelp = () => {
 
     const [ currentContent, setCurrentContent ] = useState(0);
 
-    const handleClickLeft = () => setCurrentContent((c) => (c > 0 ? c - 1 : c));
-    const handleClickRight = () =>
-        setCurrentContent((c) => (c < CONTENTS.length - 1 ? c + 1 : c));
+    const handleClickLeft = () => {
 
-    const isLeftButtonDisabled = currentContent === 0;
-    const isRightButtonDisabled = currentContent === CONTENTS.length - 1;
+        setCurrentState(currentState === 0 ?  0 : currentState - 1);
+        // setCurrentContent((c) => (c > 0 ? c - 1 : c));
+    };
+    const handleClickRight = () =>{
+        // setCurrentContent((c) => (c < CONTENTS.length - 1 ? c + 1 : c));
+        setCurrentState(currentState === 3 ?  3 : currentState + 1);
+    };
+
+    const isLeftButtonDisabled = currentState === 0;
+    const isRightButtonDisabled = currentState === 3;
 
     const leftButtonColor = isLeftButtonDisabled ? "grey" : "orange";
     const rightButtonColor = isRightButtonDisabled ? "grey" : "orange";
 
-    const progress = (currentContent / (CONTENTS.length - 1)) * 100;
+    const progress = (currentState / (3)) * 100;
+
+    const [ sidebarprogress, setSidebarprogress ] = useState(0);
 
     return (
         <Sidebar.Pushable>
@@ -180,8 +193,9 @@ const FacebookIdentityProviderCreateWizardHelp = () => {
                 className="idp-sidepanel-sidebar"
             >
                 <div className="idp-sidepanel-content">
+
                     { CONTENTS.map(({ id, title, body }) => (
-                        <div key={ id } style={ { display: currentContent === id ? "block" : "none" } }>
+                        <div key={ id } style={ { display: currentState === id ? "block" : "none" } }>
                             <Segment
                                 className="idp-sidepanel-segment">
                                 <h2>{ title }</h2>
@@ -193,7 +207,7 @@ const FacebookIdentityProviderCreateWizardHelp = () => {
                 <div className="idp-sidepanel-footer">
                     <Progress
                         percent={ progress }
-                        progress
+                        indicating
                         className="idp-sidepanel-progress"
                         color="orange"
                         size="tiny"
