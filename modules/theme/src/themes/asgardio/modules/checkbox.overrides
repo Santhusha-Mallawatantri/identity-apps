@@ -1,0 +1,33 @@
+/*******************************
+      Checkbox Overrides
+*******************************/
+
+.ui.checkbox {
+    &.read-only {
+        label:before {
+            background-color: @readOnlyFormFieldBgColor !important;
+            cursor: @readOnlyFieldCursor;
+        }
+    }
+}
+
+.ui.checkbox {
+    &.invite-selection {
+        label::after {
+            background-color: @primaryColor !important;
+        }
+        label::before {
+            border-color: #c8c8c8 !important;
+        }
+         &.selected {
+            label::before {
+                border-color: @primaryColor !important;
+            }
+         }
+    }
+}
+
+checkbox.ui.idpCard.toggle.checkbox.fitted.small{
+    position:absolute;
+    margin-top:10px;
+}
