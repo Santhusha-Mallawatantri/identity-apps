@@ -1,3 +1,4 @@
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2022, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
  *
@@ -39,6 +40,9 @@ interface OrganizationEnterpriseAuthenticationProviderCreateWizardContentPropsIn
      * @param submitFunctionCb - Callback.
      */
     triggerSubmission: (submitFunctionCb: () => void) => void;
+    
+    setOnFocus:any;
+    
     /**
      * Trigger previous page.
      * @param previousFunctionCb - Callback.
@@ -85,6 +89,7 @@ export const OrganizationEnterpriseAuthenticationProviderCreateWizardContent:
             template,
             setTotalPage,
             onSubmit,
+            setOnFocus,
             ["data-componentid"]: componentId
         } = props;
 
@@ -185,6 +190,10 @@ export const OrganizationEnterpriseAuthenticationProviderCreateWizardContent:
                     >
                         <WizardPage validate={ validateForm }>
                             <Field.Input
+                                onFocus={ () => { 
+                                    setOnFocus(0);
+                                    // next();
+                                } }
                                 ariaLabel="Organization IDP Name"
                                 inputType="name"
                                 name="name"
@@ -206,6 +215,10 @@ export const OrganizationEnterpriseAuthenticationProviderCreateWizardContent:
                                 width={ 13 }
                             />
                             <Field.Input
+                                onFocus={ () => { 
+                                    setOnFocus(1);
+                                // next();
+                                } }
                                 ariaLabel="Organization IDP Description"
                                 inputType="description"
                                 name="description"

@@ -1,3 +1,4 @@
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2022, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
  *
@@ -117,6 +118,10 @@ export const OrganizationEnterpriseAuthenticationProviderCreateWizard: FunctionC
     const [ openLimitReachedModal, setOpenLimitReachedModal ] = useState<boolean>(false);
 
     const eventPublisher: EventPublisher = EventPublisher.getInstance();
+    const [ current , setCurrent ] = useState <number>(0);
+
+
+    console.log("current from the main", current);
 
     /**
      * Track wizard steps from wizard component.
@@ -302,7 +307,7 @@ export const OrganizationEnterpriseAuthenticationProviderCreateWizard: FunctionC
                         </LinkButton>
                     </Grid.Column>
                     <Grid.Column mobile={ 8 } tablet={ 8 } computer={ 8 }>
-                        { currentWizardStep !== totalStep ? (
+                        { (currentWizardStep !== totalStep) ? (
                             <PrimaryButton
                                 floated="right"
                                 onClick={ () => {
@@ -375,7 +380,7 @@ export const OrganizationEnterpriseAuthenticationProviderCreateWizard: FunctionC
                 </ModalWithSidePanel.Header>
                 <ModalWithSidePanel.Content>
                     <Suspense fallback={ <ContentLoader/> }>
-                        <WizardHelp/>
+                        <WizardHelp current={ current }/>
                     </Suspense>
                 </ModalWithSidePanel.Content>
             </ModalWithSidePanel.SidePanel>
@@ -452,6 +457,7 @@ export const OrganizationEnterpriseAuthenticationProviderCreateWizard: FunctionC
                     >
                         { alert && alertComponent }
                         <OrganizationEnterpriseAuthenticationProviderCreateWizardContent
+                            setOnFocus={ setCurrent }
                             onSubmit={ onSubmitWizard }
                             triggerSubmission={ (submitFunctionCb: () => void) => {
                                 submitForm = submitFunctionCb;
