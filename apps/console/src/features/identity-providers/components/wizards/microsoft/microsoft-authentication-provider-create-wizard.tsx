@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2022, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
  *
@@ -128,6 +130,8 @@ export const MicrosoftAuthenticationProviderCreateWizard: FunctionComponent<
             [ "data-componentid" ]: componentId
         } = props;
 
+        const [ current , setCurrent ] = useState <number>(0);
+
         const dispatch: Dispatch<any> = useDispatch();
 
         const { t } = useTranslation();
@@ -152,6 +156,7 @@ export const MicrosoftAuthenticationProviderCreateWizard: FunctionComponent<
             setCurrentWizardStep(wizStep + 1);
         }, [ wizStep ]);
 
+        console.log("current from the main", current);
         /**
         * Creates a new identity provider.
         *
@@ -355,44 +360,48 @@ export const MicrosoftAuthenticationProviderCreateWizard: FunctionComponent<
                             </LinkButton>
                         </Grid.Column>
                         <Grid.Column mobile={ 8 } tablet={ 8 } computer={ 8 }>
-                            { currentWizardStep !== totalStep ? (
-                                <PrimaryButton
-                                    floated="right"
-                                    onClick={ () => {
-                                        submitForm();
-                                    } }
-                                    data-testid={ `${ testId }-modal-finish-button` }
-                                    loading={ isSubmitting }
-                                    disabled={ isSubmitting }
-                                >
-                                    { t("console:develop.features.authenticationProvider.wizards.buttons.next") }
-                                </PrimaryButton>
-                            ) : (
-                                <>
-                                    <PrimaryButton
+                            { 
+                                (currentWizardStep !== totalStep) 
+                                    ? (
+                                        <PrimaryButton
+                                            floated="right"
+                                            onClick={ () => {
+                                                submitForm();
+                                            } }
+                                            data-testid={ `${ testId }-modal-finish-button` }
+                                            loading={ isSubmitting }
+                                            disabled={ isSubmitting }
+                                        >
+                                            { t("console:develop.features.authenticationProvider.wizards.buttons.next") }
+                                        </PrimaryButton>
+                                    ) 
+                                    : (
+                                        <>
+                                            <PrimaryButton
+                                                floated="right"
+                                                onClick={ () => {
+                                                    submitForm();
+                                                } }
+                                                data-testid={ `${ testId }-modal-finish-button` }
+                                                loading={ isSubmitting }
+                                                disabled={ isSubmitting }
+                                            >
+                                                { t("console:develop.features.authenticationProvider.wizards.buttons.finish") }
+                                            </PrimaryButton>
+                                        </>
+                                    ) }
+                            {
+                                currentWizardStep > 1 && (
+                                    <LinkButton
                                         floated="right"
                                         onClick={ () => {
-                                            submitForm();
+                                            triggerPreviousForm();
                                         } }
-                                        data-testid={ `${ testId }-modal-finish-button` }
-                                        loading={ isSubmitting }
-                                        disabled={ isSubmitting }
+                                        data-testid={ `${ testId }-modal-previous-button` }
                                     >
-                                        { t("console:develop.features.authenticationProvider.wizards.buttons.finish") }
-                                    </PrimaryButton>
-                                </>
-                            ) }
-                            {
-                                currentWizardStep > 1 &&
-                            (<LinkButton
-                                floated="right"
-                                onClick={ () => {
-                                    triggerPreviousForm();
-                                } }
-                                data-testid={ `${ testId }-modal-previous-button` }
-                            >
-                                { t("console:develop.features.authenticationProvider.wizards.buttons.previous") }
-                            </LinkButton>)
+                                        { t("console:develop.features.authenticationProvider.wizards.buttons.previous") }
+                                    </LinkButton>
+                                )
                             }
                         </Grid.Column>
                     </Grid.Row>
@@ -426,7 +435,7 @@ export const MicrosoftAuthenticationProviderCreateWizard: FunctionComponent<
                     </ModalWithSidePanel.Header>
                     <ModalWithSidePanel.Content>
                         <Suspense fallback={ <ContentLoader/> }>
-                            <WizardHelp/>
+                            <WizardHelp current = { current }/>
                         </Suspense>
                     </ModalWithSidePanel.Content>
                 </ModalWithSidePanel.SidePanel>
@@ -508,6 +517,8 @@ export const MicrosoftAuthenticationProviderCreateWizard: FunctionComponent<
                         >
                             { alert && alertComponent }
                             <MicrosoftAuthenticationProviderCreateWizardContent
+                                setOnFocus={ setCurrent }
+                                
                                 onSubmit={ onSubmitWizard }
                                 triggerSubmission={ (submitFunctionCb: () => void) => {
                                     submitForm = submitFunctionCb;

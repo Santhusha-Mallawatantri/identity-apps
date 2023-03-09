@@ -1,3 +1,4 @@
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2022, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
  *
@@ -38,6 +39,9 @@ interface MicrosoftAuthenticationProviderCreateWizardContentPropsInterface exten
      * @param submitFunctionCb - Callback.
      */
     triggerSubmission: (submitFunctionCb: () => void) => void;
+    
+    setOnFocus:any
+
     /**
      * Trigger previous page.
      * @param previousFunctionCb - Callback.
@@ -85,6 +89,7 @@ export const MicrosoftAuthenticationProviderCreateWizardContent: FunctionCompone
         template,
         setTotalPage,
         onSubmit,
+        setOnFocus,
         [ "data-testid" ]: testId
     } = props;
 
@@ -193,6 +198,10 @@ export const MicrosoftAuthenticationProviderCreateWizardContent: FunctionCompone
                 >
                     <WizardPage validate={ validateForm }>
                         <Field.Input
+                            onFocus={ () => { 
+                                setOnFocus(1);
+                                // next();
+                            } }
                             ariaLabel="Microsoft IDP Name"
                             inputType="name"
                             name="name"
@@ -218,6 +227,10 @@ export const MicrosoftAuthenticationProviderCreateWizardContent: FunctionCompone
                             width={ 13 }
                         />
                         <Field.Input
+                            onFocus={ () => { 
+                                setOnFocus(2);
+                                // next();
+                            } }
                             ariaLabel="Microsoft Client ID"
                             inputType="client_id"
                             name="clientId"
@@ -248,6 +261,10 @@ export const MicrosoftAuthenticationProviderCreateWizardContent: FunctionCompone
                             width={ 13 }
                         />
                         <Field.Input
+                            onFocus={ () => { 
+                                setOnFocus(3);
+                                // next();
+                            } }
                             ariaLabel="Microsoft Client Secret"
                             inputType="password"
                             className="addon-field-wrapper"
