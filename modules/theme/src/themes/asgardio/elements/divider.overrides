@@ -21,3 +21,18 @@
         }
     }
 }
+
+/*----------------------------------------
+      Info-Card divider hidden
+------------------------------------------*/
+.ui.instance.divider{
+    padding: 0px;
+
+}
+.divider.ui.instance.divider{
+    margin-top:0px;
+    margin-bottom:10px;
+    margin-right:14px;
+    margin-left:14px;
+
+}

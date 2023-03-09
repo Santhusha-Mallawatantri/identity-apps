@@ -1514,7 +1514,7 @@ TODO : Move values to separate variables and cleanup styles.
     }
 
     .scroll-container {
-        height: calc(100vh - 450px);
+        height: calc(100vh - 500px);
         min-width: 800px;
         font-family: "Montserrat";
         font-style: normal;
@@ -1762,4 +1762,149 @@ TODO : Move values to separate variables and cleanup styles.
             margin-bottom: 8px;
         }
     }
+}
+
+/*-------------------------------
+   Connections Page Revamp
+--------------------------------*/
+
+.static-standard-title {
+    font-size:24px;
+    margin-bottom:25px;
+    margin-top:20px;
+    font-weight:500;
+} 
+.custom-integration-title {
+    font-size:24px;
+    font-weight:500;
+    margin: 25px 0px;
+}
+.grid-container-section {
+    display: grid;
+    gap: 14px; 
+    margin-bottom: 20px; 
+    width: 330px ;
+} 
+@media (min-width: 320px) {
+    .grid-container-section { 
+        grid-template-columns: repeat(1, 1fr); 
+    }
+} 
+@media (min-width: 768px) {
+    .grid-container-section { 
+        grid-template-columns: repeat(1, 1fr); 
+    }
+} 
+@media (min-width: 992px) {
+    .grid-container-section { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+} 
+@media (min-width: 1200px) {
+    .grid-container-section { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+} 
+@media (min-width: 1920px) {
+    .grid-container-section { 
+        grid-template-columns: repeat(4, 1fr); 
+    }
+}
+
+.idp-sidepanel-sidebar {
+  width: auto !important;
+  height: auto !important;
+}
+
+.idp-sidepanel-content {
+  height: 486px !important;
+  width: auto !important;
+  overflow-y: hidden !important;
+  overflow-x: auto !important;
+  padding: 0px 24px !important;
+  border: none !important;
+  border-radius: none !important;
+  
+}
+
+.idp-sidepanel-content-large {
+  height: 644px !important;
+  width: auto !important;
+  overflow-y: hidden !important;
+  padding: 0px 24px !important;
+  border: none !important;
+  border-radius: none !important;
+}
+
+.idp-sidepanel-segment {
+  border: none !important;
+  border-radius: none !important;
+  padding: 0px !important;
+  margin: 24px 0 0 0 !important;
+  box-shadow: none !important;
+}
+
+.idp-sidepanel-segment h2{
+  font-size: 1.4rem !important;
+}
+.idp-sidepanel-segment p{
+  font-size: 1em !important;
+}
+
+.idp-sidepanel-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: none !important;
+  background-color: #eee !important;
+  height: 68px !important;
+  padding: 0px 14px !important;
+ 
+}
+
+.idp-sidepanel-progress {
+  margin: 14px 0px !important;
+  min-width: 200px !important;
+  font-size: none!important;
+}
+
+.progress .idp-sidepanel-progress {
+  color: #ff7300;
+  height: 10px;
+  margin: 14px 0px !important;
+  min-width: 200px !important;
+  font-size: none!important;
+}
+
+.idp-sidepanel-button {
+  margin: 0.5em;
+  background-color: #fff !important;
+}
+
+.idp-sidepanel-button .icon {
+  color: #444;
+}
+
+.idp-instance-profile-select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.idp-instance-dropdown {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.idp-instance-dropdown span {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #444;
+  margin-right: 10px;
 }

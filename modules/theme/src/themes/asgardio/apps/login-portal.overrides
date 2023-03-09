@@ -17,21 +17,10 @@
 
 .google-one-tap-container {
     #credential_picker_container {
-        z-index: 999 !important;
-
         iframe {
             width : 100% !important;
         }
     }
-
-    overflow: hidden;
-    transition: max-height 1.4s ease-out;
-    height: auto;
-    max-height: 0px;
-}
-
-.google-one-tap-container.loaded {
-    max-height: 360px;
 }
 
 /*-----------------------------
