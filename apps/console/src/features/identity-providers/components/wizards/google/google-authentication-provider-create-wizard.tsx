@@ -1,3 +1,7 @@
+/* eslint-disable tsdoc/syntax */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/typedef */
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2021, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
@@ -115,10 +119,12 @@ export const GoogleAuthenticationProviderCreateWizard: FunctionComponent<
 
         const eventPublisher: EventPublisher = EventPublisher.getInstance();
 
+        const [ current , setCurrent ] = useState <number>(0);
+
         /**
         * Creates a new identity provider.
         *
-        * @param identityProvider Identity provider object.
+        * @param identityProvider - Identity provider object.
         */
         const createNewIdentityProvider = (identityProvider: IdentityProviderInterface): void => {
 
@@ -403,7 +409,7 @@ export const GoogleAuthenticationProviderCreateWizard: FunctionComponent<
             const {
                 wizardHelp: WizardHelp
             } = template?.content;
-
+            
             return (
                 <ModalWithSidePanel.SidePanel>
                     <ModalWithSidePanel.Header className="wizard-header help-panel-header muted">
@@ -413,7 +419,7 @@ export const GoogleAuthenticationProviderCreateWizard: FunctionComponent<
                     </ModalWithSidePanel.Header>
                     <ModalWithSidePanel.Content>
                         <Suspense fallback={ <ContentLoader/> }>
-                            <WizardHelp/>
+                            <WizardHelp current={ current }/>
                         </Suspense>
                     </ModalWithSidePanel.Content>
                 </ModalWithSidePanel.SidePanel>
@@ -484,6 +490,9 @@ export const GoogleAuthenticationProviderCreateWizard: FunctionComponent<
                             data-testid={ `${ testId }-modal-content-2` }>
                             { alert && alertComponent }
                             <GoogleAuthenticationProviderCreateWizardContent
+                                
+                                setOnFocus={ setCurrent }
+                                
                                 onSubmit={ onSubmitWizard }
                                 triggerSubmission={ (submitFunction: () => void) => {
                                     submitAdvanceForm = submitFunction;

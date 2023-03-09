@@ -1814,6 +1814,7 @@ TODO : Move values to separate variables and cleanup styles.
 .idp-sidepanel-sidebar {
   width: auto !important;
   height: auto !important;
+  padding-bottom:0!important;
 }
 
 .idp-sidepanel-content {

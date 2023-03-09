@@ -1,19 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/typedef */
+/* eslint-disable header/header */
 /**
- * Copyright (c) 2021, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
+ * Copyright (c) 2023, WSO2 LLC. (https://www.wso2.com) All Rights Reserved.
  *
- * WSO2 LLC. licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * This software is the property of WSO2 LLC. and its suppliers, if any.
+ * Dissemination of any information or reproduction of any material contained
+ * herein in any form is strictly forbidden, unless permitted by WSO2 expressly.
+ * You may not alter or remove any copyright or other notice from copies of this content.
  */
 
 import { TestableComponentInterface } from "@wso2is/core/models";
@@ -34,6 +28,9 @@ interface GitHubAuthenticationProviderCreateWizardContentPropsInterface extends 
      * @param submitFunctionCb - Callback.
      */
     triggerSubmission: (submitFunctionCb: () => void) => void;
+    
+    setOnFocus:any;
+
     /**
      * Trigger previous page.
      * @param previousFunctionCb - Callback.
@@ -103,6 +100,7 @@ export const GoogleAuthenticationProviderCreateWizardContent: FunctionComponent<
         template,
         setTotalPage,
         onSubmit,
+        setOnFocus,
         [ "data-testid" ]: testId
     } = props;
 
@@ -198,6 +196,11 @@ export const GoogleAuthenticationProviderCreateWizardContent: FunctionComponent<
                         } }
                     >
                         <Field.Input
+                            onFocus={ () => { 
+                                setOnFocus(1);
+                                // next();
+                            } }
+                            id="Google_IDP_Name"
                             ariaLabel="Google IDP Name"
                             inputType="name"
                             name="name"
@@ -221,8 +224,15 @@ export const GoogleAuthenticationProviderCreateWizardContent: FunctionComponent<
                             validation={ (value: string) => idpNameValidation(value) }
                             data-testid={ `${ testId }-idp-name` }
                             width={ 13 }
+
                         />
                         <Field.Input
+                            // onChange={ handleInputChange }
+                            onFocus={ () => { 
+                                setOnFocus(2);
+                                // next();
+                            } }
+                            id="Google_Client_ID"
                             ariaLabel="Google Client ID"
                             inputType="client_id"
                             name="clientId"
@@ -253,6 +263,12 @@ export const GoogleAuthenticationProviderCreateWizardContent: FunctionComponent<
                             width={ 13 }
                         />
                         <Field.Input
+                            // onChange={ handleInputChange }
+                            onFocus={ () => { 
+                                setOnFocus(3);
+                                // next();
+                            } }
+                            id="Google Client Secret"
                             ariaLabel="Google Client Secret"
                             inputType="password"
                             className="addon-field-wrapper"
