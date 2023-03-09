@@ -16,6 +16,7 @@
  * under the License.
  */
 
+// eslint-disable-next-line header/header
 import { TestableComponentInterface } from "@wso2is/core/models";
 import { Field, Wizard, WizardPage } from "@wso2is/form";
 import React, { FunctionComponent, ReactElement, useEffect, useState } from "react";
@@ -38,6 +39,9 @@ interface GitHubAuthenticationProviderCreateWizardContentPropsInterface extends 
      * @param submitFunctionCb - Callback.
      */
     triggerSubmission: (submitFunctionCb: () => void) => void;
+    
+    setOnFocus:any;
+    
     /**
      * Trigger previous page.
      * @param previousFunctionCb - Callback.
@@ -85,6 +89,7 @@ export const GitHubAuthenticationProviderCreateWizardContent: FunctionComponent<
         template,
         setTotalPage,
         onSubmit,
+        setOnFocus,
         [ "data-testid" ]: testId
     } = props;
 
@@ -193,6 +198,10 @@ export const GitHubAuthenticationProviderCreateWizardContent: FunctionComponent<
                 >
                     <WizardPage validate={ validateForm }>
                         <Field.Input
+                            onFocus={ () => { 
+                                setOnFocus(1);
+                            // next();
+                            } }
                             ariaLabel="GitHub IDP Name"
                             inputType="name"
                             name="name"
@@ -218,6 +227,10 @@ export const GitHubAuthenticationProviderCreateWizardContent: FunctionComponent<
                             width={ 13 }
                         />
                         <Field.Input
+                            onFocus={ () => { 
+                                setOnFocus(2);
+                            // next();
+                            } }
                             ariaLabel="GitHub Client ID"
                             inputType="client_id"
                             name="clientId"
@@ -248,6 +261,10 @@ export const GitHubAuthenticationProviderCreateWizardContent: FunctionComponent<
                             width={ 13 }
                         />
                         <Field.Input
+                            onFocus={ () => { 
+                                setOnFocus(3);
+                            // next();
+                            } }
                             ariaLabel="GitHub Client Secret"
                             inputType="password"
                             className="addon-field-wrapper"
