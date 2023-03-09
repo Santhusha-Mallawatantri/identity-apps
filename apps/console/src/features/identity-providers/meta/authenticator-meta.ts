@@ -195,7 +195,7 @@ export class AuthenticatorMeta {
             [ IdentityProviderManagementConstants.EMAIL_OTP_AUTHENTICATOR_ID ]: "Predefined",
             [ IdentityProviderManagementConstants.SMS_OTP_AUTHENTICATOR_ID ]: "Predefined",
             [ IdentityProviderManagementConstants.SWE_AUTHENTICATOR_ID ]: "Decentralized IdP"
-        }, authenticatorId);
+        }, authenticatorId);  
     }
 
     /**
@@ -240,19 +240,6 @@ export class AuthenticatorMeta {
             [ IdentityProviderManagementConstants.TWITTER_AUTHENTICATOR_ID ]: "twitter",
             [ IdentityProviderManagementConstants.OIDC_AUTHENTICATOR_ID ]: "enterprise-oidc",
             [ IdentityProviderManagementConstants.SAML_AUTHENTICATOR_ID ]: "enterprise-saml"
-        }, authenticatorId);
-    }
-
-    public static getAuthenticatorDocLink( authenticatorId: string ): any   {
-        return get({
-            [ IdentityProviderManagementConstants.IDP_TEMPLATE_DOC_LINKS.GOOGLE_LINK]: "navigationLink",
-            [ IdentityProviderManagementConstants.IDP_TEMPLATE_DOC_LINKS.MICROSOFT_LINK]: "navigationLink",
-            [ IdentityProviderManagementConstants.IDP_TEMPLATE_DOC_LINKS.FACEBOOK_LINK]: "navigationLink",
-            [ IdentityProviderManagementConstants.IDP_TEMPLATE_DOC_LINKS.GITHUB_LINK]: "navigationLink",
-            [ IdentityProviderManagementConstants.IDP_TEMPLATE_DOC_LINKS.OIDC_LINK]: "navigationLink",
-            [ IdentityProviderManagementConstants.IDP_TEMPLATE_DOC_LINKS.SAML_LINK]: "navigationLink",
-            [ IdentityProviderManagementConstants.IDP_TEMPLATE_DOC_LINKS.ENTERPRISE_LINK]: "navigationLink",
-            [ IdentityProviderManagementConstants.IDP_TEMPLATE_DOC_LINKS.SWE_LINK]: "navigationLink"
         }, authenticatorId);
     }
 }
