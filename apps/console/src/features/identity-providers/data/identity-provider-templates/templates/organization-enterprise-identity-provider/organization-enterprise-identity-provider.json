@@ -5,6 +5,7 @@
     "category": "DEFAULT",
     "description": "Organization SSO login",
     "displayOrder": 4,
+    "navigationLink": "https://wso2.com/asgardeo/docs/guides/authentication/add-organization-login/",
     "tags": [
         "Organization-Login"
     ],

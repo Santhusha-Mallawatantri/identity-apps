@@ -9,6 +9,7 @@
     "tags": [ "OIDC" ],
     "disabled": false,
     "templateId": "swe-idp",
+    "navigationLink": "https://wso2.com/asgardeo/docs/guides/authentication/decentralized-login/sign-in-with-ethereum/",
     "idp": {
         "certificate": {
             "jwksUri": "https://oidc.signinwithethereum.org/jwk"

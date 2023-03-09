@@ -1,3 +1,4 @@
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2021, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
  *
@@ -36,7 +37,6 @@ import React, { FunctionComponent, ReactElement, SyntheticEvent, useEffect, useS
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { RouteComponentProps } from "react-router";
-import { Dispatch } from "redux";
 import { identityProviderConfig } from "../../../extensions/configs";
 import {
     AppConstants,
@@ -46,12 +46,11 @@ import {
     getEmptyPlaceholderIllustrations,
     history
 } from "../../core";
-import { OrganizationType } from "../../organizations/constants";
+import CardSection from "../components/static-card/card-section";
 import { AuthenticatorCreateWizardFactory } from "../components/wizards";
 import { getIdPIcons } from "../configs";
 import { IdentityProviderManagementConstants } from "../constants";
 import {
-    FederatedAuthenticatorListItemInterface,
     IdentityProviderTemplateCategoryInterface,
     IdentityProviderTemplateInterface,
     IdentityProviderTemplateItemInterface,
@@ -59,6 +58,7 @@ import {
 } from "../models";
 import { setAvailableAuthenticatorsMeta } from "../store";
 import { IdentityProviderManagementUtils, IdentityProviderTemplateManagementUtils } from "../utils";
+
 
 /**
  * Proptypes for the IDP template selection page component.
@@ -83,18 +83,15 @@ const IdentityProviderTemplateSelectPage: FunctionComponent<IdentityProviderTemp
 
     const urlSearchParams: URLSearchParams = new URLSearchParams(location.search);
 
-    const dispatch: Dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const { t } = useTranslation();
     const { getLink } = useDocumentation();
 
     const config: ConfigReducerStateInterface = useSelector((state: AppState) => state.config);
-    const availableAuthenticators: FederatedAuthenticatorListItemInterface[] = useSelector(
-        (state: AppState) => state.identityProvider.meta.authenticators);
+    const availableAuthenticators = useSelector((state: AppState) => state.identityProvider.meta.authenticators);
     const identityProviderTemplates: IdentityProviderTemplateItemInterface[] = useSelector(
         (state: AppState) => state.identityProvider?.groupedTemplates);
-    const orgType: OrganizationType = useSelector((state: AppState) =>
-        state?.organization?.organizationType);
 
     const [ showWizard, setShowWizard ] = useState<boolean>(false);
     const [ templateType, setTemplateType ] = useState<string>(undefined);
@@ -161,7 +158,7 @@ const IdentityProviderTemplateSelectPage: FunctionComponent<IdentityProviderTemp
          * we need to group the existing templates based on their
          * template-group.
          */
-        const skipGrouping: boolean = false, sortTemplates: boolean = true;
+        const skipGrouping = false, sortTemplates = true;
 
         IdentityProviderTemplateManagementUtils
             .getIdentityProviderTemplates(useAPI, skipGrouping, sortTemplates)
@@ -253,8 +250,7 @@ const IdentityProviderTemplateSelectPage: FunctionComponent<IdentityProviderTemp
          * Find the matching template for the selected card.
          * if found then set the template to state.
          */
-        const selectedTemplate: IdentityProviderTemplateItemInterface = identityProviderTemplates.find(
-            ({ id: templateId }: { id: string }) => (templateId === id));
+        const selectedTemplate = identityProviderTemplates.find(({ id: templateId }) => (templateId === id));
 
         if (selectedTemplate) {
             setSelectedTemplate(selectedTemplate);
@@ -309,7 +305,7 @@ const IdentityProviderTemplateSelectPage: FunctionComponent<IdentityProviderTemp
             }
 
             return template.tags
-                .some((selectedLabel: string) => filterLabels.includes(selectedLabel));
+                .some((selectedLabel) => filterLabels.includes(selectedLabel));
         };
         
         const templatesClone: IdentityProviderTemplateCategoryInterface[] = cloneDeep(originalCategorizedTemplates);
@@ -324,7 +320,7 @@ const IdentityProviderTemplateSelectPage: FunctionComponent<IdentityProviderTemp
                 const name: string = template.name.toLocaleLowerCase();
 
                 if (name.includes(query)
-                    || template.tags.some((tag: string) => tag.toLocaleLowerCase().includes(query)
+                    || template.tags.some((tag) => tag.toLocaleLowerCase().includes(query)
                         || startCase(tag).toLocaleLowerCase().includes(query))) {
 
                     return isFiltersMatched(template);
@@ -411,31 +407,24 @@ const IdentityProviderTemplateSelectPage: FunctionComponent<IdentityProviderTemp
 
     return (
         <PageLayout
-            pageTitle={ "Create New Connection" }
+            pageTitle={ "Create New Integration" }
             isLoading={ useNewConnectionsView === undefined }
             title={
                 useNewConnectionsView
-                    ? t("console:develop.pages.authenticationProviderTemplate.title")
+                    ? t("Create a new Integration")
                     : t("console:develop.pages.idpTemplate.title")
             }
             contentTopMargin={ true }
             description={
                 useNewConnectionsView
-                    ?   (<>
-                        { t("console:develop.pages.authenticationProviderTemplate.subTitle") }
-                        <DocumentationLink
-                            link={ getLink("develop.connections.newConnection.learnMore") }
-                        >
-                            { t("common:learnMore") }
-                        </DocumentationLink>
-                    </>)
+                    ?   t("Select a connection type and create a new integration")
                     :   t("console:develop.pages.idpTemplate.subTitle")
             }
             backButton={ {
                 "data-testid": `${ testId }-page-back-button`,
                 onClick: handleBackButtonClick,
                 text: useNewConnectionsView
-                    ? t("console:develop.pages.authenticationProviderTemplate.backButton")
+                    ? t("Go Back to Integrations")
                     : t("console:develop.pages.idpTemplate.backButton")
             } }
             titleTextAlign="left"
@@ -454,6 +443,13 @@ const IdentityProviderTemplateSelectPage: FunctionComponent<IdentityProviderTemp
                 ) }
                 isLoading={ useNewConnectionsView === undefined || isIDPTemplateRequestLoading }
             >
+                
+                <CardSection/>
+
+                <div className="social-integration-title">
+                    Social Integrations
+                </div>
+                
                 {
                     (filteredCategorizedTemplates && !isIDPTemplateRequestLoading)
                         ? (
@@ -473,16 +469,12 @@ const IdentityProviderTemplateSelectPage: FunctionComponent<IdentityProviderTemp
                                                 template: IdentityProviderTemplateInterface,
                                                 templateIndex: number
                                             ) => {
-                                                const isOrgIdp: boolean = template.templateId === "organi" +
-                                                    "zation-enterprise-idp";
+                                                const isOrgIdp = template.templateId === "organization-enterprise-idp";
 
                                                 if (isOrgIdp && !isOrganizationManagementEnabled) {
                                                     return null;
                                                 }
-
-                                                if (isOrgIdp && orgType === OrganizationType.SUBORGANIZATION) {
-                                                    return null;
-                                                }
+                                                console.log(template,"templatetemplate");
 
                                                 return (
                                                     <ResourceGrid.Card
@@ -495,6 +487,7 @@ const IdentityProviderTemplateSelectPage: FunctionComponent<IdentityProviderTemp
                                                         disabled={ template.disabled }
                                                         comingSoonRibbonLabel={ t("common:comingSoon") }
                                                         resourceDescription={ template.description }
+                                                        resourceDocumentationLink={ template.navigationLink }
                                                         resourceImage={
                                                             IdentityProviderManagementUtils
                                                                 .resolveTemplateImage(template.image, getIdPIcons())

@@ -26,6 +26,7 @@ import FacebookIdPTemplate from "../data/identity-provider-templates/templates/f
 import GitHubIdPTemplate from "../data/identity-provider-templates/templates/github/github.json";
 import GoogleIdPTemplate from "../data/identity-provider-templates/templates/google/google.json";
 import MicrosoftIDPTemplate from "../data/identity-provider-templates/templates/microsoft/microsoft.json";
+import SWEIdpTemplate from "../../../extensions/identity-provider-templates/templates/swe/swe.json";
 import EnterpriseOIDCIdPTemplate from
     "../data/identity-provider-templates/templates/oidc-identity-provider/enterprise-oidc-identity-provider.json";
 // eslint-disable-next-line max-len
@@ -404,6 +405,7 @@ export class IdentityProviderManagementConstants {
     public static readonly MS_LIVE_AUTHENTICATOR_ID: string = "TWljcm9zb2Z0V2luZG93c0xpdmVBdXRoZW50aWNhdG9y";
     public static readonly IWA_KERBEROS_AUTHENTICATOR_ID: string = "SVdBS2VyYmVyb3NBdXRoZW50aWNhdG9y";
     public static readonly MICROSOFT_AUTHENTICATOR_ID: string = "T3BlbklEQ29ubmVjdEF1dGhlbnRpY2F0b3I";
+    public static readonly SWE_AUTHENTICATOR_ID: string = "T3BlbklEQ29ubmVjdEF1dGhlbnRpY2F0b3I";
 
     // Known IS Predefined/Protocols authenticator IDs
     public static readonly PASSIVE_STS_AUTHENTICATOR_NAME: string = "PassiveSTSAuthenticator";
@@ -464,4 +466,31 @@ export class IdentityProviderManagementConstants {
      )
 
      public static readonly SHOW_PREDEFINED_TEMPLATES_IN_EXPERT_MODE_SETUP: boolean = false;
+
+     /**
+     * Set of IDP documentation Links.
+     */
+    public static readonly IDP_TEMPLATE_DOC_LINKS: {
+        ENTERPRISE_LINK: string;
+        // EXPERT_MODE: string;
+        FACEBOOK_LINK: any;
+        GITHUB_LINK: any;
+        GOOGLE_LINK: any;
+        MICROSOFT_LINK: any;
+        OIDC_LINK: any;
+        ORGANIZATION_ENTERPRISE_IDP_LINK: any;
+        SAML_LINK: any;
+        SWE_LINK: any;
+    } = {
+        ENTERPRISE_LINK: EnterpriseIdPTemplate.navigationLink,
+        // EXPERT_MODE: ExpertModeIdPTemplate.guideLink,
+        FACEBOOK_LINK: FacebookIdPTemplate.navigationLink,
+        GITHUB_LINK: GitHubIdPTemplate.navigationLink,
+        GOOGLE_LINK: GoogleIdPTemplate.navigationLink,
+        MICROSOFT_LINK: MicrosoftIDPTemplate.navigationLink,
+        OIDC_LINK: EnterpriseOIDCIdPTemplate.navigationLink,
+        ORGANIZATION_ENTERPRISE_IDP_LINK: EnterpriseOrganizationIdPTemplate.navigationLink,
+        SAML_LINK: EnterpriseSAMLIdPTemplate.navigationLink,
+        SWE_LINK: SWEIdpTemplate.navigationLink
+    };
 }

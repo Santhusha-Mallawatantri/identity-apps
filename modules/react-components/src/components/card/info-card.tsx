@@ -21,11 +21,13 @@
 import { IdentifiableComponentInterface, TestableComponentInterface } from "@wso2is/core/models";
 import classNames from "classnames";
 import React, { FunctionComponent, MouseEvent, PropsWithChildren, ReactElement, ReactNode, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Card, CardProps, Icon, Label } from "semantic-ui-react";
 import { Button, LinkButton } from "../button";
 import { GenericIcon, GenericIconProps, GenericIconSizes } from "../icon";
 import { Popup } from "../popup";
 import { Tooltip } from "../typography";
+
 
 /**
  * Proptypes for the info card component.
@@ -55,6 +57,7 @@ export interface InfoCardPropsInterface extends CardProps, IdentifiableComponent
     /**
      * Image for the card.
      */
+    
     image?: any;
     /**
      * Side of the image.
@@ -119,6 +122,8 @@ export interface GithubHubRepoMetaInfoInterface {
  * @param props - Props injected to the components.
  * @returns Selection card component.
  */
+
+
 export const InfoCard: FunctionComponent<PropsWithChildren<InfoCardPropsInterface>> = (
     props: PropsWithChildren<InfoCardPropsInterface>
 ): ReactElement => {
@@ -145,6 +150,8 @@ export const InfoCard: FunctionComponent<PropsWithChildren<InfoCardPropsInterfac
         ribbon,
         tags,
         showTooltips,
+        navigationLink,
+    
         [ "data-componentid" ]: componentId,
         [ "data-testid" ]: testId,
         ...rest
@@ -167,7 +174,10 @@ export const InfoCard: FunctionComponent<PropsWithChildren<InfoCardPropsInterfac
     const [ hover, setHover ] = useState(false);
     const elementClass = enabled ? "enabled-element" : "disabled-element";
 
-
+    const handleClick = () => {
+        window.open(navigationLink, "_blank");
+    };
+   
     return (
 
         <>
@@ -415,10 +425,9 @@ export const InfoCard: FunctionComponent<PropsWithChildren<InfoCardPropsInterfac
                     </div>
                     
                     <div className="instances-buttons">
-                        
                         { enabled && ( 
                             <LinkButton 
-                                className="ui idpCreate button" 
+                                className="idpCreate-button" 
                                 onClick={ (e: MouseEvent<HTMLButtonElement>) => {
                                     onClick(e as unknown as MouseEvent<HTMLAnchorElement>, 
                                         null);
@@ -428,12 +437,14 @@ export const InfoCard: FunctionComponent<PropsWithChildren<InfoCardPropsInterfac
                                 <i className="arrow right icon"></i>  
                             </LinkButton>
                         ) }
-                        
-                        <Button className="ui setupGuide button">
+                        <Button 
+                            className="setupGuide-button"
+                            onClick={ handleClick }
+                        >
                             <i className="book icon"></i>
-                            Setup Guide 
+                                Setup Guide 
                         </Button>
-
+                        { /* </a> */ }
                     </div>
                 </div>
                 {

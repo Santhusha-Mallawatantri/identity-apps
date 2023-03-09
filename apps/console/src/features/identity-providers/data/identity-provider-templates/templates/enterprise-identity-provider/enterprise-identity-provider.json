@@ -3,6 +3,7 @@
     "description": "Enterprise login via standard protocols",
     "displayOrder": 3,
     "id": "enterprise-idp",
+    "navigationLink": "https://wso2.com/asgardeo/docs/guides/authentication/add-organization-login/#scenario",
     "idp": {
         "certificate": {},
         "claims": {

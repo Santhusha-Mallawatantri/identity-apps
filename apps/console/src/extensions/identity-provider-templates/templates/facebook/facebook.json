@@ -2,6 +2,7 @@
     "id": "facebook-idp",
     "name": "Facebook",
     "description": "Login users with existing Facebook accounts.",
+    "navigationLink":"https://wso2.com/asgardeo/docs/guides/authentication/social-login/add-facebook-login/#register-asgardeo-on-facebook",
     "image": "facebook",
     "category": "DEFAULT",
     "displayOrder": 2,

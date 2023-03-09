@@ -481,9 +481,17 @@
     &.resource-grid {
         .ui.card {
             &.info-card {
-                width: @resourceCardDefaultWidth;
+                width: @infoCardDefaultWidth;
+                border-radius: @infoCardBorderRadius;
+                min-height: auto;
+                border-color: @infoCardBorderColor;
+                padding-top: 0px;
 
                 .content {
+                    display: flex;  
+                    align-items: center;
+                    padding-bottom:5px; 
+                    padding-top: 16px !important;
                     &:not(:first-child) {
                         padding-top: 0.4em;
 
@@ -797,20 +805,82 @@
         .content {
             border: none;
         }
+        .instances-container {
+            &.conditions-container {
+                padding: 10px 14px !important;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                
+                &.instances-conditionOne {
+                    padding-left: 14px;
+                    padding-right: 14px;
+                    font-size: 14px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                
+                    span {
+                        
+                        &.enabled {
+                            padding: 16px 0px 6px 0px;
+                            color: #444;
+                        }
+                        
+                        &.disabled {
+                            color: #b3b3b3;
+                            padding: 16px 0px 15px 0px !important;
+                        }
+                    }
+                }
+            }
+            .instances-buttons {
+                display:flex; 
+                flex-direction: row; 
+                justify-content: space-between;
+                float:right;
+            }
+        }
         .card-image {
             margin-right: 0.7em;
         }
         .card-header-section {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
             .card-header {
                 font-weight: 500;
+                margin-left: 4px;
+                font-size: 18px;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                color: #444;
+                display: flex;
+                align-items: center;
+                white-space: break-spaces
             }
         }
+        .header-with-toggle {
+            margin-left:10px;
+            padding-left: 8px;
+            margin-right:24px;
+            display:flex;
+            flex-direction:row;align-items:center;
+            justify-content:space-between;
+        }
         .card-subheader {
-            font-size: @infoCardSubHeaderFontSize;
-            color: @lightFontColor;
+            margin-left: 20px;
+            margin-top: 0;
+            font-size: 13px;
+            color: grey;
         }
         .card-description-container {
             padding-top: 0.5em;
+            padding-left:20px !important;
             min-height: 45px;
         }
         .card-description {
@@ -844,12 +914,17 @@
         }
         .card-tags {
             padding-top: 0.6em;
+            padding-left:20px;
             padding-bottom: 0.6em;
 
             .label {
-                font-weight: 600;
-                color: @white;
-                background: lighten(@nobel, 20);
+                font-weight:400;
+                color:#444;
+                background:#f0f0f0;
+                font-size: 12px; 
+                min-height: 23px; 
+                min-width:auto;
+                border-radius: 3px;
             }
         }
         .github-meta {
@@ -874,6 +949,32 @@
                 }
             }
         }
+    }
+    &.info-card .instances-container.conditions-container {
+        padding: 10px 14px;
+    }
+    
+    &.info-card .instances-container .instances-conditionOne {
+        padding-left: 20px;
+        padding-right: 14px;
+        font-size: 14px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    &.info-card .instances-container .instances-conditionOne span {
+        padding: 16px 0px 6px 0px;
+    }
+    
+    &.info-card .instances-container .instances-conditionOne span.enabled {
+        color: #444;
+    }
+    
+    &.info-card .instances-container .instances-conditionOne span.disabled {
+        color: #b3b3b3;
+        padding: 16px 0px 13px 0px;
     }
 }
 
@@ -1379,4 +1480,61 @@
             background-color: darken(@galleryGray, 8) !important;
         }
     }
+}
+
+/*-----------------------------------------
+         IdP Static Card
+-------------------------------------------*/
+
+.ui.card {
+    &.card-container {
+        padding:10px 14px; 
+        display:flex;
+        flex-direction:column;  
+        width:330px; 
+        border:1px solid; 
+        border-color:#ff7300; 
+        box-shadow:none; 
+        border-radius: 10px; 
+
+        .static-card-header {
+            display:flex !important; 
+            flex-direction:row !important;
+            align-items:center !important;
+            justify-content:flex-start !important;
+            font-size:20px;
+            color:#444; 
+            margin-top: 10px; 
+            margin-bottom:5px; 
+            padding-bottom:0px;
+            font-weight:500;
+        } 
+        .static-card-icon img {
+            width:35px !important;
+            height:35px !important; 
+            margin-right:10px 
+        } 
+        .card-static-description {
+            font-size:13px; 
+            padding-top:16px;
+            margin-bottom: 16px;
+        } 
+        .card-static-meta {
+            font-size:13px!important; 
+            color:#808080;
+        } 
+        .card-static-label {
+            width:fit-content!important; 
+            height:auto!important; 
+            background-color:#f0f0f0!important;
+            color:#444!important;
+            font-size:12px!important;
+            border:none!important; 
+            display:inline-block; 
+            padding: 7px 10px!important; 
+            margin-left:0px !important;
+            border-radius:3px!important;
+            margin-bottom:6px!important; 
+        }
+    }  
 }

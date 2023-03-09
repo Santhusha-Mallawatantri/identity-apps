@@ -2,6 +2,7 @@
     "id": "microsoft-idp",
     "name": "Microsoft",
     "description": "Enable login for users with existing Microsoft accounts.",
+    "navigationLink": "https://wso2.com/asgardeo/docs/guides/authentication/social-login/add-microsoft-login/",
     "image": "microsoft",
     "category": "DEFAULT",
     "displayOrder": 1,

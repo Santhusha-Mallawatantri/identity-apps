@@ -1,19 +1,11 @@
+/* eslint-disable header/header */
 /**
- * Copyright (c) 2021, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
+ * Copyright (c) 2023, WSO2 LLC. (https://www.wso2.com) All Rights Reserved.
  *
- * WSO2 LLC. licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * This software is the property of WSO2 LLC. and its suppliers, if any.
+ * Dissemination of any information or reproduction of any material contained
+ * herein in any form is strictly forbidden, unless permitted by WSO2 expressly.
+ * You may not alter or remove any copyright or other notice from copies of this content.
  */
 
 import { IdentifiableComponentInterface, TestableComponentInterface } from "@wso2is/core/models";
@@ -105,6 +97,7 @@ export const ResourceGridCard: FunctionComponent<PropsWithChildren<ResourceGridC
         editButtonLabel,
         onDelete,
         onEdit,
+        onClick,
         isResourceComingSoon,
         resourceCategory,
         resourceDescription,
@@ -114,6 +107,7 @@ export const ResourceGridCard: FunctionComponent<PropsWithChildren<ResourceGridC
         showResourceEdit,
         showResourceDelete,
         showTooltips,
+        resourceDocumentationLink,
         testId,
         [ "data-componentid" ]: componentId,
         ...rest
@@ -124,6 +118,8 @@ export const ResourceGridCard: FunctionComponent<PropsWithChildren<ResourceGridC
         className
     );
 
+    console.log(resourceDocumentationLink,"resourceDocumentationLink");
+
     return (
         <InfoCard
             className={ classes }
@@ -131,44 +127,31 @@ export const ResourceGridCard: FunctionComponent<PropsWithChildren<ResourceGridC
             header={ resourceName }
             subHeader={ resourceCategory }
             description={ resourceDescription }
+            navigationLink ={ resourceDocumentationLink }
             image={ resourceImage }
             disabled={ isResourceComingSoon || disabled }
             showTooltips={ !(isResourceComingSoon || disabled) && showTooltips }
+            onClick={ onClick }
             action={
-                showActions && (
-                    <div className="actions">
-                        {
-                            showResourceEdit && onEdit && (
-                                <LinkButton
-                                    disabled={ isResourceComingSoon || disabled }
-                                    hoverType="underline"
-                                    className="info-card-inner-action"
-                                    onClick={ onEdit }
-                                    data-componentid={ `${ componentId }-item-edit-button` }
-                                    data-testid={ `${ testId }-item-edit-button` }
-                                >
-                                    { editButtonLabel }
-                                    <Icon name="caret right"/>
-                                </LinkButton>
-                            )
-                        }
-                        {
-                            showResourceDelete && onDelete && !(isResourceComingSoon || disabled) && (
-                                <GenericIcon
-                                    square
-                                    hoverable
-                                    transparent
-                                    floated="right"
-                                    className="delete-button"
-                                    icon={ <Icon name="trash alternate"/> }
-                                    data-componentid={ `${ componentId }-item-delete-button` }
-                                    data-testid={ `${ testId }-item-delete-button` }
-                                    onClick={ onDelete }
-                                />
-                            )
-                        }
-                    </div>
-                )
+                // showActions && (
+                (<div className="actions">
+                    {
+                        // showResourceEdit && onEdit && (
+                        <LinkButton
+                            disabled={ isResourceComingSoon || disabled }
+                            hoverType="underline"
+                            className="info-card-inner-action"
+                            onClick={ onEdit }
+                            data-componentid={ `${componentId}-item-edit-button` }
+                            data-testid={ `${testId}-item-edit-button` }
+                        >
+                            { editButtonLabel }
+                            { /* <Icon name="caret right"/> */ }
+                        </LinkButton>
+                        // )
+                    }
+                </div> )
+                // )
             }
             data-componentid={ componentId }
             { ...rest }
@@ -185,11 +168,11 @@ ResourceGridCard.defaultProps = {
     comingSoonRibbonLabel: "Coming Soon",
     "data-componentid": "resource-grid-card",
     "data-testid": "resource-grid-card",
-    editButtonLabel: "Configure",
+    editButtonLabel: "Edit",
     imageOptions: {
         floated: false,
         inline: true
     },
-    imageSize: "micro",
+    imageSize: "mini",
     showTooltips: true
 };

@@ -2,6 +2,7 @@
     "id": "github-idp",
     "name": "GitHub",
     "description": "Enable login for users with existing GitHub accounts.",
+    "navigationLink":"https://wso2.com/asgardeo/docs/guides/authentication/social-login/add-github-login/",
     "image": "github",
     "category": "DEFAULT",
     "displayOrder": 3,

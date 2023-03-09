@@ -1,7 +1,8 @@
 {
     "id": "google-idp",
     "name": "Google",
-    "description": "Enable login for users with existing Google accounts.",
+    "description": "Enable login for users with pooping test existing Google accounts.",
+    "navigationLink": "https://wso2.com/asgardeo/docs/guides/authentication/social-login/add-google-login/",
     "image": "google",
     "category": "DEFAULT",
     "displayOrder": 1,

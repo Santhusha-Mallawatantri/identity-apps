@@ -146,10 +146,10 @@ const CardSection = () => {
             <div className="static-standard-title">
                 Standard Intergrations
             </div>
-            <div 
-                className="grid-container-section"
-                style={ { display:"grid", gap:"14px", gridTemplateColumns: "1fr 1fr 1fr 1fr",
-                    marginBottom:"20px",width:"330px" } }>
+            <div className="grid-container-section">
+                
+                { /* // style={ { display:"grid", gap:"14px", gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                //     marginBottom:"20px",width:"330px" } } > */ }
                 { CardData.map(( items , i )=>{
                     return(
                         <GridLayout key={ i } className="standard-card-grid">

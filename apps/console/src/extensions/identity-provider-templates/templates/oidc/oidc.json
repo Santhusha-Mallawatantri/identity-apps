@@ -1,6 +1,7 @@
 {
     "category": "DEFAULT",
     "description": "Configure a new enterprise identity provider with OpenID Connect",
+    "navigationLink": "https://wso2.com/asgardeo/docs/guides/authentication/enterprise-login/add-oidc-idp-login/",
     "templateGroup": "enterprise-protocols",
     "displayOrder": 4,
     "id": "enterprise-oidc-idp",

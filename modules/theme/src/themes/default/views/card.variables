@@ -95,7 +95,7 @@ Recent Application Card
          Resource Card
 --------------------------------*/
 
-@resourceCardDefaultWidth: 220px;
+@resourceCardDefaultWidth: 330px;
 @resourceCardDisabledOpacity: 0.6;
 
 /*-------------------------------
@@ -149,6 +149,9 @@ Recent Application Card
 @infoCardHoverBoxShadow: @defaultCardHoverBoxShadow;
 @infoCardSubHeaderFontSize: 0.8em;
 @infoCardSelectedBorder: @primaryColor;
+@infoCardDefaultWidth: 330px;
+@infoCardBorderRadius: 10px;
+@infoCardBorderColor: #ff7300;
 
 /*-------------------------------
          Stat Count Card

@@ -1,3 +1,4 @@
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2021, WSO2 LLC. (https://www.wso2.com). All Rights Reserved.
  *
@@ -86,6 +87,8 @@ export const ResourceGrid: FunctionComponent<
             [ "data-componentid" ]: componentId,
             ...rest
         } = props;
+
+        console.log("ResourceGrid: props: ", props);
 
         const classes = classNames(
             "resource-grid",

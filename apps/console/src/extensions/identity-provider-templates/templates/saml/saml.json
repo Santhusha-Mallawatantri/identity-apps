@@ -2,6 +2,7 @@
     "templateGroup": "enterprise-protocols",
     "category": "DEFAULT",
     "description": "Configure a new enterprise identity provider with SAML 2.0",
+    "navigationLink": "https://wso2.com/asgardeo/docs/guides/authentication/enterprise-login/add-saml-idp-login/",
     "displayOrder": 5,
     "id": "enterprise-saml-idp",
     "tags": [ "SAML" ],
