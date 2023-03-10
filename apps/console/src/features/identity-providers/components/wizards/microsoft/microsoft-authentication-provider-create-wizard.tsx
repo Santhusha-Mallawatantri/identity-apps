@@ -22,7 +22,6 @@ import { IdentityAppsError } from "@wso2is/core/errors";
 import { AlertLevels, IdentifiableComponentInterface, TestableComponentInterface } from "@wso2is/core/models";
 import { addAlert } from "@wso2is/core/store";
 import {
-    DocumentationLink,
     GenericIcon,
     Heading,
     LinkButton,
@@ -501,11 +500,6 @@ export const MicrosoftAuthenticationProviderCreateWizard: FunctionComponent<
                                     { subTitle &&
                                 (<Heading as="h6">
                                     { subTitle }
-                                    <DocumentationLink
-                                        link={ getLink("develop.connections.newConnection.microsoft.learnMore") }
-                                    >
-                                        { t("common:learnMore") }
-                                    </DocumentationLink>
                                 </Heading>)
                                     }
                                 </div>

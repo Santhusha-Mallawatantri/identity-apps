@@ -25,7 +25,6 @@ import { AlertLevels, IdentifiableComponentInterface, TestableComponentInterface
 import { addAlert } from "@wso2is/core/store";
 import {
     ContentLoader,
-    DocumentationLink,
     GenericIcon,
     Heading,
     LinkButton,
@@ -475,11 +474,6 @@ export const GoogleAuthenticationProviderCreateWizard: FunctionComponent<
                                     { subTitle &&
                                 (<Heading as="h6">
                                     { subTitle }
-                                    <DocumentationLink
-                                        link={ getLink("develop.connections.newConnection.google.learnMore") }
-                                    >
-                                        { t("common:learnMore") }
-                                    </DocumentationLink>
                                 </Heading>)
                                     }
                                 </div>

@@ -940,7 +940,6 @@ export const EnterpriseIDPCreateWizard: FC<EnterpriseIDPCreateWizardProps> = (
                             { subTitle && (
                                 <Heading as="h6">
                                     { subTitle }
-                                    { resolveDocumentationLink() }
                                 </Heading>
                             ) }
                         </div>

@@ -21,7 +21,6 @@ import { AlertLevels, IdentifiableComponentInterface } from "@wso2is/core/models
 import { addAlert } from "@wso2is/core/store";
 import {
     ContentLoader,
-    DocumentationLink,
     GenericIcon,
     Heading,
     LinkButton,
@@ -416,11 +415,6 @@ export const ExpertModeAuthenticationProviderCreateWizard: FunctionComponent<
                                     { subTitle &&
                                 (<Heading as="h6">
                                     { subTitle }
-                                    <DocumentationLink
-                                        link={ getLink("develop.connections.newConnection.siwe.learnMore") }
-                                    >
-                                        { t("common:learnMore") }
-                                    </DocumentationLink>
                                 </Heading>)
                                     }
                                 </div>
