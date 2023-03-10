@@ -30,6 +30,9 @@ interface SIWEAuthenticationProviderCreateWizardContentPropsInterface extends Id
      * @param submitFunctionCb - Callback.
      */
     triggerSubmission: (submitFunctionCb: () => void) => void;
+    
+    setOnFocus:any;
+    
     /**
      * Trigger previous page.
      * @param previousFunctionCb - Callback.
@@ -77,6 +80,7 @@ export const SIWEAuthenticationProviderCreateWizardContent: FunctionComponent<
             template,
             setTotalPage,
             onSubmit,
+            setOnFocus,
             [ "data-componentid" ]: componentId
         } = props;
 
@@ -181,6 +185,10 @@ export const SIWEAuthenticationProviderCreateWizardContent: FunctionComponent<
             >
                 <WizardPage validate={ validateForm }>
                     <Field.Input
+                        onFocus={ () => { 
+                            setOnFocus(1);
+                        // next();
+                        } }
                         ariaLabel="SIWE IDP Name"
                         inputType="name"
                         name="name"
@@ -206,6 +214,10 @@ export const SIWEAuthenticationProviderCreateWizardContent: FunctionComponent<
                         width={ 13 }
                     />
                     <Field.Input
+                        onFocus={ () => { 
+                            setOnFocus(2);
+                        // next();
+                        } }
                         ariaLabel="SIWE Client ID"
                         inputType="client_id"
                         name="clientId"
@@ -236,6 +248,10 @@ export const SIWEAuthenticationProviderCreateWizardContent: FunctionComponent<
                         width={ 13 }
                     />
                     <Field.Input
+                        onFocus={ () => { 
+                            setOnFocus(3);
+                        // next();
+                        } }
                         ariaLabel="SIWE Client Secret"
                         inputType="password"
                         className="addon-field-wrapper"

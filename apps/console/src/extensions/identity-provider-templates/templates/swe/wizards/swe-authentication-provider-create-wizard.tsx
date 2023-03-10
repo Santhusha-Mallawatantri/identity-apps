@@ -1,3 +1,4 @@
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2022, WSO2 LLC. (http://www.wso2.com). All Rights Reserved.
  *
@@ -124,6 +125,10 @@ export const SIWEAuthenticationProviderCreateWizard: FunctionComponent<
         const [ openLimitReachedModal, setOpenLimitReachedModal ] = useState<boolean>(false);
 
         const eventPublisher: EventPublisher = EventPublisher.getInstance();
+        const [ current , setCurrent ] = useState <number>(0);
+
+
+        console.log("current from the main", current);
 
         /**
         * Track wizard steps from wizard component.
@@ -361,7 +366,7 @@ export const SIWEAuthenticationProviderCreateWizard: FunctionComponent<
                     </ModalWithSidePanel.Header>
                     <ModalWithSidePanel.Content>
                         <Suspense fallback={ <ContentLoader/> }>
-                            <WizardHelp/>
+                            <WizardHelp current={ current }/>
                         </Suspense>
                     </ModalWithSidePanel.Content>
                 </ModalWithSidePanel.SidePanel>
@@ -444,6 +449,7 @@ export const SIWEAuthenticationProviderCreateWizard: FunctionComponent<
                         >
                             { alert && alertComponent }
                             <SIWEAuthenticationProviderCreateWizardContent
+                                setOnFocus={ setCurrent }
                                 onSubmit={ onSubmitWizard }
                                 triggerSubmission={ (submitFunctionCb: () => void) => {
                                     submitForm = submitFunctionCb;
