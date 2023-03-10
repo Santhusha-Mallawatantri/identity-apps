@@ -132,7 +132,7 @@ const CustomIdentityProviderCreateWizardHelpPropsInterface = () => {
                 <div className="idp-sidepanel-footer">
                     <Progress
                         percent={ progress }
-                        progress
+                        indicating
                         className="idp-sidepanel-progress"
                         color="orange"
                         size="tiny"
