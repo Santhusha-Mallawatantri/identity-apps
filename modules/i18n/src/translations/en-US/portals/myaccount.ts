@@ -699,6 +699,10 @@ export const myAccount: MyAccountNS = {
                 regenerate: "Regenerate"
             },
             backupCode: {
+                actions: {
+                    add: "Add backup codes",
+                    delete: "Remove backup codes"
+                },
                 description: "Use backup codes to access your account in the event you cannot receive multi-factor " +
                     "authentication codes. You can regenerate new codes if required.",
                 download: {
@@ -709,12 +713,20 @@ export const myAccount: MyAccountNS = {
                         "away from your phone. Keep these backup codes somewhere safe but accessible."
                 },
                 heading: "Backup Codes",
+                messages: {
+                    disabledMessage: "At least one additional authenticator should be configured to enable backup codes."
+                },
                 modals: {
                     actions: {
                         copied: "Copied",
                         copy: "Copy Codes",
                         download: "Download Codes",
                         regenerate: "Regenerate"
+                    },
+                    delete: {
+                        description: "This action will remove backup codes and you will no longer be able to use them. " +
+                            "Do you wish to continue?",
+                        heading: "Confirmation"
                     },
                     description: "Use backup codes to sign in when you are away from your phone.",
                     generate: {
@@ -743,6 +755,10 @@ export const myAccount: MyAccountNS = {
                             description: "Error occurred while deleting backup codes",
                             message: "Something went wrong"
                         }
+                    },
+                    deleteSuccess: {
+                        genericMessage: "Successfully removed",
+                        message: "Successfully removed backup codes."
                     },
                     downloadError: {
                         error: {
@@ -808,7 +824,7 @@ export const myAccount: MyAccountNS = {
                 remaining: "remaining"
             },
             fido: {
-                description: "You can use a FIDO2 security key or biometrics in " +
+                description: "You can use a <1>Passkey</1>, <1>FIDO2 Security Key</1> or <1>Biometrics</1> in " +
                     "your device to sign in to your account.",
                 form: {
                     label: "Security Key/Biometric",
